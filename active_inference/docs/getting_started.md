@@ -131,21 +131,22 @@ pytest tests/test_core.py::TestGenerativeModel::test_model_initialization -v
 
 ## Examples
 
-### Example 1: Basic Inference
+### Example 1: Basic Inference (14)
 
 ```bash
-python3 examples/01_basic_inference.py
+python3 examples/14_basic_inference.py
 ```
 
 This example demonstrates:
 - Creating a simple generative model
 - Performing state inference from observations
 - Understanding variational free energy
+- THRML sampling-based inference
 
-### Example 2: Grid World Navigation
+### Example 2: Grid World Navigation (15)
 
 ```bash
-python3 examples/02_grid_world_agent.py
+python3 examples/15_grid_world_agent.py
 ```
 
 This example demonstrates:
@@ -153,8 +154,9 @@ This example demonstrates:
 - Building a matching generative model
 - Running an active inference agent
 - Goal-directed navigation
+- THRML-based perception
 
-### Example 3: Precision Control
+### Example 3: Precision Control (03)
 
 ```bash
 python3 examples/03_precision_control.py
@@ -164,6 +166,20 @@ This example demonstrates:
 - How precision controls exploration vs exploitation
 - Comparing low, medium, and high precision agents
 - Understanding action selection strategies
+- THRML-based agent inference
+
+### Example 11: Comprehensive THRML (PRIMARY)
+
+```bash
+python3 examples/11_thrml_comprehensive.py
+```
+
+**PRIMARY THRML example** demonstrating:
+- All real THRML methods from working notebooks
+- Block management, factors, samplers, interactions
+- Custom nodes and energy functions
+- ThrmlInferenceEngine for GPU acceleration
+- Complete THRML workflow
 
 ## Development Workflow
 
@@ -222,19 +238,33 @@ active_inference/
 │   │   └── tmaze.py
 │   ├── models/                # Model builders
 │   │   └── discrete_mdp.py
-│   └── utils/                 # Utilities
-│       ├── metrics.py
-│       └── visualization.py
+│   ├── utils/                 # Utilities
+│   │   ├── metrics.py
+│   │   ├── statistical_analysis.py
+│   │   ├── validation.py
+│   │   ├── resource_tracking.py
+│   │   └── visualization.py
+│   └── visualization/         # Comprehensive plotting
+│       ├── active_inference_plots.py
+│       ├── thrml_plots.py
+│       ├── statistical_plots.py
+│       ├── environment_plots.py
+│       ├── network_plots.py
+│       ├── comparison_plots.py
+│       └── animation.py
 ├── tests/                     # Test suite
 │   ├── test_core.py
 │   ├── test_inference.py
 │   ├── test_agents.py
 │   ├── test_environments.py
-│   └── test_integration.py
-├── examples/                  # Example scripts
+│   ├── test_integration.py
+│   └── test_thrml_integration.py
+├── examples/                  # Example scripts (00-15)
 ├── docs/                      # Documentation
 │   ├── theory.md             # Theoretical background
-│   └── api.md                # API reference
+│   ├── api.md                # API reference
+│   ├── thrml_integration.md  # THRML guide
+│   └── module_*.md           # Module docs
 └── scripts/                   # Development scripts
     ├── setup.sh
     ├── check.sh
@@ -403,14 +433,17 @@ graph LR
 
 ### External Resources
 - [THRML Documentation](../../docs/index.md) - Parent THRML library
+- [Active Inference Examples](../examples/) - 16 comprehensive examples (00-15)
 - [Active Inference Textbook](https://mitpress.mit.edu/9780262045353/) - Parr, Pezzulo, & Friston (2022)
 - [Free Energy Principle](https://www.fil.ion.ucl.ac.uk/~karl/) - Karl Friston's work
 - [JAX Documentation](https://jax.readthedocs.io/) - JAX library
 
 ### Examples
-- [Example Index](../examples/INDEX.md) - All examples
-- [Basic Examples](../examples/) - 01-06: Fundamentals
-- [Advanced Examples](../examples/) - 07-13: Advanced topics
+- [Example Index](../examples/INDEX.md) - All 16 examples
+- [Example README](../examples/README.md) - Detailed guide
+- [Example 11: PRIMARY THRML](../examples/11_thrml_comprehensive.py) - Comprehensive THRML demo
+- [Example 15: Grid World Agent](../examples/15_grid_world_agent.py) - Agent navigation
+- [Examples 00-02](../examples/) - THRML notebook translations
 
 ## Support
 
