@@ -1,0 +1,75 @@
+{
+  "example_name": "08_signal_processing",
+  "timestamp": "20251031_120258",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/08_signal_processing/20251031_120258",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 165,
+      "total_size_formatted": "165.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 165,
+          "size_formatted": "165.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 22938,
+      "total_size_formatted": "22.4KB",
+      "files": [
+        {
+          "name": "filtering_results.npz",
+          "size": 22938,
+          "size_formatted": "22.4KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 4,
+      "total_size": 534079,
+      "total_size_formatted": "521.6KB",
+      "files": [
+        {
+          "name": "thrml_signal_detail.pdf",
+          "size": 16799,
+          "size_formatted": "16.4KB"
+        },
+        {
+          "name": "thrml_signal_detail.png",
+          "size": 132389,
+          "size_formatted": "129.3KB"
+        },
+        {
+          "name": "thrml_signal_processing.pdf",
+          "size": 33406,
+          "size_formatted": "32.6KB"
+        },
+        {
+          "name": "thrml_signal_processing.png",
+          "size": 351485,
+          "size_formatted": "343.2KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 13455,
+      "total_size_formatted": "13.1KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 13455,
+          "size_formatted": "13.1KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 7,
+    "size": 570637,
+    "size_formatted": "557.3KB"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "seed": 42,
+  "side_lengths": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "batch_sizes": [
+    1,
+    10,
+    50,
+    100
+  ],
+  "n_cats": 5,
+  "beta": 1.0,
+  "n_samples": 100,
+  "n_warmup": 10,
+  "steps_per_sample": 5,
+  "jax_backend": "cpu"
+}

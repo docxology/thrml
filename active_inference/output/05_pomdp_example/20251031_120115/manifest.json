@@ -1,0 +1,85 @@
+{
+  "example_name": "05_pomdp_example",
+  "timestamp": "20251031_120115",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/05_pomdp_example/20251031_120115",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 720,
+      "total_size_formatted": "720.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 720,
+          "size_formatted": "720.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 5306,
+      "total_size_formatted": "5.2KB",
+      "files": [
+        {
+          "name": "pomdp_episodes.npz",
+          "size": 5306,
+          "size_formatted": "5.2KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 6,
+      "total_size": 484520,
+      "total_size_formatted": "473.2KB",
+      "files": [
+        {
+          "name": "belief_trajectories.pdf",
+          "size": 22405,
+          "size_formatted": "21.9KB"
+        },
+        {
+          "name": "belief_trajectories.png",
+          "size": 108440,
+          "size_formatted": "105.9KB"
+        },
+        {
+          "name": "pomdp_model.png",
+          "size": 63126,
+          "size_formatted": "61.6KB"
+        },
+        {
+          "name": "pomdp_analysis.pdf",
+          "size": 24452,
+          "size_formatted": "23.9KB"
+        },
+        {
+          "name": "pomdp_analysis.png",
+          "size": 245839,
+          "size_formatted": "240.1KB"
+        },
+        {
+          "name": "pomdp_model.pdf",
+          "size": 20258,
+          "size_formatted": "19.8KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 49921,
+      "total_size_formatted": "48.8KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 49921,
+          "size_formatted": "48.8KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 9,
+    "size": 540467,
+    "size_formatted": "527.8KB"
+  }
+}

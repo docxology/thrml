@@ -1,0 +1,85 @@
+{
+  "example_name": "10_active_inference_fundamentals",
+  "timestamp": "20251031_120449",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/10_active_inference_fundamentals/20251031_120449",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 316,
+      "total_size_formatted": "316.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 316,
+          "size_formatted": "316.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 1068,
+      "total_size_formatted": "1.0KB",
+      "files": [
+        {
+          "name": "fundamentals_results.json",
+          "size": 1068,
+          "size_formatted": "1.0KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 6,
+      "total_size": 351929,
+      "total_size_formatted": "343.7KB",
+      "files": [
+        {
+          "name": "information_theory_analysis.png",
+          "size": 108009,
+          "size_formatted": "105.5KB"
+        },
+        {
+          "name": "transition_matrices.png",
+          "size": 38277,
+          "size_formatted": "37.4KB"
+        },
+        {
+          "name": "fundamentals_analysis.png",
+          "size": 138152,
+          "size_formatted": "134.9KB"
+        },
+        {
+          "name": "transition_matrices.pdf",
+          "size": 20038,
+          "size_formatted": "19.6KB"
+        },
+        {
+          "name": "fundamentals_analysis.pdf",
+          "size": 26108,
+          "size_formatted": "25.5KB"
+        },
+        {
+          "name": "information_theory_analysis.pdf",
+          "size": 21345,
+          "size_formatted": "20.8KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 18270,
+      "total_size_formatted": "17.8KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 18270,
+          "size_formatted": "17.8KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 9,
+    "size": 371583,
+    "size_formatted": "362.9KB"
+  }
+}

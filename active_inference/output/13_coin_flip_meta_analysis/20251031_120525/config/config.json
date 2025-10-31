@@ -1,0 +1,25 @@
+{
+  "true_biases": [
+    0.3,
+    0.5,
+    0.7
+  ],
+  "n_flips_levels": [
+    10,
+    44,
+    200
+  ],
+  "prior_configs": {
+    "weak": [
+      1.0,
+      1.0
+    ],
+    "medium": [
+      5.0,
+      5.0
+    ]
+  },
+  "n_repeats": 2,
+  "total_conditions": 18,
+  "total_trials": 36
+}

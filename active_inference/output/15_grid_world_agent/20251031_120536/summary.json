@@ -1,0 +1,31 @@
+{
+  "example_name": "15_grid_world_agent",
+  "timestamp": "20251031_120536",
+  "start_time": "2025-10-31 12:05:36.197530",
+  "end_time": "2025-10-31 12:05:39.742069",
+  "duration_seconds": 3.544539,
+  "metrics": {
+    "total_reward": 1.0,
+    "steps_taken": 3,
+    "goal_reached": true,
+    "mean_free_energy": 2.8011883894602456,
+    "mean_reward_per_step": 0.3333333333333333,
+    "path_efficiency": 0.6666666865348816
+  },
+  "performance_metrics": {},
+  "section_timings": {},
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 7,
+    "total_size_bytes": 176516,
+    "total_size_formatted": "172.4KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/15_grid_world_agent/20251031_120536"
+}

@@ -1,0 +1,18 @@
+{
+  "seed": 42,
+  "true_bias": 0.7,
+  "prior_alpha": 1.0,
+  "prior_beta": 1.0,
+  "n_flips": 200,
+  "checkpoints": [
+    1,
+    5,
+    10,
+    20,
+    50
+  ],
+  "n_samples": 100,
+  "thrml_n_warmup": 25,
+  "steps_per_sample": 3,
+  "n_bias_levels": 50
+}

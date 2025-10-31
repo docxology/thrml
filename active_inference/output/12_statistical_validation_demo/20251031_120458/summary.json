@@ -1,0 +1,32 @@
+{
+  "example_name": "12_statistical_validation_demo",
+  "timestamp": "20251031_120458",
+  "start_time": "2025-10-31 12:04:58.967681",
+  "end_time": "2025-10-31 12:05:22.935505",
+  "duration_seconds": 23.967824,
+  "metrics": {},
+  "performance_metrics": {},
+  "section_timings": {
+    "Resource Estimation": 0.005091667175292969,
+    "Model Validation": 1.6501538753509521,
+    "Active Inference Simulation": 17.706406831741333,
+    "Statistical Analysis": 1.8601927757263184,
+    "Enhanced Visualization": 2.5717239379882812,
+    "Trajectory Validation": 0.02080392837524414,
+    "Resource Report": 0.09590411186218262
+  },
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 14,
+    "total_size_bytes": 1180715,
+    "total_size_formatted": "1.1MB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/12_statistical_validation_demo/20251031_120458"
+}

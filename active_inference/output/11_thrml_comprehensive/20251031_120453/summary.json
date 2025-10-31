@@ -1,0 +1,28 @@
+{
+  "example_name": "11_thrml_comprehensive",
+  "timestamp": "20251031_120453",
+  "start_time": "2025-10-31 12:04:53.587931",
+  "end_time": "2025-10-31 12:04:57.065723",
+  "duration_seconds": 3.477792,
+  "metrics": {
+    "thrml_methods_used": 14,
+    "kl_divergence_thrml_vs_standard": 0.0007506925612688065,
+    "thrml_sampling_successful": true
+  },
+  "performance_metrics": {},
+  "section_timings": {},
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 10,
+    "total_size_bytes": 430831,
+    "total_size_formatted": "420.7KB"
+  },
+  "errors": [],
+  "profiling_enabled": false,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/11_thrml_comprehensive/20251031_120453"
+}

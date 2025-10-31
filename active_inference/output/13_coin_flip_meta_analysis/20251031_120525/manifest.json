@@ -1,0 +1,122 @@
+{
+  "example_name": "13_coin_flip_meta_analysis",
+  "timestamp": "20251031_120525",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/13_coin_flip_meta_analysis/20251031_120525",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 280,
+      "total_size_formatted": "280.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 280,
+          "size_formatted": "280.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 3,
+      "total_size": 25225,
+      "total_size_formatted": "24.6KB",
+      "files": [
+        {
+          "name": "aggregated_results.json.npz",
+          "size": 11464,
+          "size_formatted": "11.2KB"
+        },
+        {
+          "name": "all_trials.json.npz",
+          "size": 11376,
+          "size_formatted": "11.1KB"
+        },
+        {
+          "name": "statistical_analysis.json.npz",
+          "size": 2385,
+          "size_formatted": "2.3KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 8,
+      "total_size": 663708,
+      "total_size_formatted": "648.2KB",
+      "files": [
+        {
+          "name": "bias_error_heatmap.pdf",
+          "size": 26604,
+          "size_formatted": "26.0KB"
+        },
+        {
+          "name": "variable_correlations.png",
+          "size": 189225,
+          "size_formatted": "184.8KB"
+        },
+        {
+          "name": "bias_error_heatmap.png",
+          "size": 48896,
+          "size_formatted": "47.8KB"
+        },
+        {
+          "name": "confidence_evolution.pdf",
+          "size": 24996,
+          "size_formatted": "24.4KB"
+        },
+        {
+          "name": "confidence_evolution.png",
+          "size": 75443,
+          "size_formatted": "73.7KB"
+        },
+        {
+          "name": "prior_comparison.pdf",
+          "size": 23943,
+          "size_formatted": "23.4KB"
+        },
+        {
+          "name": "prior_comparison.png",
+          "size": 51517,
+          "size_formatted": "50.3KB"
+        },
+        {
+          "name": "learning_curve_regression.png",
+          "size": 223084,
+          "size_formatted": "217.9KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 12026,
+      "total_size_formatted": "11.7KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 12026,
+          "size_formatted": "11.7KB"
+        }
+      ]
+    },
+    "reports": {
+      "count": 2,
+      "total_size": 1951,
+      "total_size_formatted": "1.9KB",
+      "files": [
+        {
+          "name": "resource_usage.txt",
+          "size": 1009,
+          "size_formatted": "1009.0B"
+        },
+        {
+          "name": "comprehensive_statistical_report.txt",
+          "size": 942,
+          "size_formatted": "942.0B"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 15,
+    "size": 703190,
+    "size_formatted": "686.7KB"
+  }
+}

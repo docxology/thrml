@@ -1,0 +1,75 @@
+{
+  "example_name": "15_grid_world_agent",
+  "timestamp": "20251031_120536",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/15_grid_world_agent/20251031_120536",
+  "files": {
+    "config": {
+      "count": 2,
+      "total_size": 358,
+      "total_size_formatted": "358.0B",
+      "files": [
+        {
+          "name": "agent_config.json",
+          "size": 143,
+          "size_formatted": "143.0B"
+        },
+        {
+          "name": "environment_config.json",
+          "size": 215,
+          "size_formatted": "215.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 2721,
+      "total_size_formatted": "2.7KB",
+      "files": [
+        {
+          "name": "trajectory.npz",
+          "size": 2721,
+          "size_formatted": "2.7KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 3,
+      "total_size": 165880,
+      "total_size_formatted": "162.0KB",
+      "files": [
+        {
+          "name": "trajectory_analysis.pdf",
+          "size": 22690,
+          "size_formatted": "22.2KB"
+        },
+        {
+          "name": "belief_evolution.png",
+          "size": 36664,
+          "size_formatted": "35.8KB"
+        },
+        {
+          "name": "trajectory_analysis.png",
+          "size": 106526,
+          "size_formatted": "104.0KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 7557,
+      "total_size_formatted": "7.4KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 7557,
+          "size_formatted": "7.4KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 7,
+    "size": 176516,
+    "size_formatted": "172.4KB"
+  }
+}

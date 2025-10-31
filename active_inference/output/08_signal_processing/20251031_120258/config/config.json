@@ -1,0 +1,10 @@
+{
+  "seed": 42,
+  "n_states": 20,
+  "n_steps": 200,
+  "observation_noise": 0.2,
+  "smoothness": 0.85,
+  "n_samples": 100,
+  "n_warmup": 25,
+  "steps_per_sample": 3
+}

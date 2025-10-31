@@ -1,0 +1,56 @@
+{
+  "seed": 42,
+  "observation_accuracy": 0.85,
+  "n_states": 2,
+  "n_observations": 2,
+  "n_actions": 3,
+  "pomdp_type": "tiger",
+  "partially_observable": true,
+  "A_matrix": [
+    [
+      0.8500000238418579,
+      0.15000000596046448
+    ],
+    [
+      0.15000000596046448,
+      0.8500000238418579
+    ]
+  ],
+  "B_tensor": [
+    [
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        0.0,
+        0.5,
+        0.5
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ]
+    ]
+  ],
+  "C_preferences": [
+    0.0,
+    0.0
+  ],
+  "D_prior": [
+    0.5,
+    0.5
+  ],
+  "n_samples": 100,
+  "n_warmup": 25,
+  "steps_per_sample": 3
+}

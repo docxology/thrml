@@ -1,0 +1,200 @@
+# Examples Module Coding Rules
+
+## General Principles
+
+1. **Educational**: Examples teach how to use the library
+2. **Complete**: Show full workflows, not snippets
+3. **Real Operations**: No mocks, actual inference
+4. **Documented**: Clear comments and explanations
+5. **Runnable**: All examples should run successfully
+
+## Code Style
+
+- Use clear, descriptive variable names
+- Add comments explaining each step
+- Print intermediate results
+- Visualize results when appropriate
+- Keep examples focused (one concept per example)
+
+## Example Structure
+
+### Standard Structure
+1. **Imports**: Import necessary modules
+2. **Setup**: Create models, environments, agents
+3. **Execution**: Run inference/agent loops
+4. **Evaluation**: Calculate metrics, visualize results
+5. **Output**: Print results, save plots
+
+### Documentation
+- File-level docstring explaining example purpose
+- Section comments for major steps
+- Inline comments for complex logic
+- Print statements explaining outputs
+
+## Function Design
+
+### Example Scripts
+- Should be runnable as standalone scripts
+- Should print meaningful output
+- Should handle errors gracefully
+- Should be well-commented
+
+### Visualization
+- Use matplotlib for plotting
+- Save figures when appropriate
+- Use clear labels and titles
+- Make plots informative
+
+## THRML Integration
+
+### Current Examples
+- **Examples 00-02**: Direct notebook translations with complete THRML methods from working notebooks
+- **Examples 03-06, 09-10, 12, 14-15 use THRML sampling-based inference** (`ThrmlInferenceEngine`)
+- Real THRML methods used throughout: `CategoricalNode`, `Block`, `BlockGibbsSpec`, `CategoricalEBMFactor`
+- GPU-accelerated block Gibbs sampling for energy-efficient inference
+- Agents in Examples 03-05, 15 use THRML internally for perception via `thrml_engine` parameter
+
+### THRML Methods Demonstrated
+
+**Core Node Types** (from notebooks):
+- `CategoricalNode` - discrete categorical variables (00_probabilistic_computing.ipynb, 01_all_of_thrml.ipynb)
+- `SpinNode` - binary ±1 spin variables (02_spin_models.ipynb, 01_all_of_thrml.ipynb)
+- `AbstractNode` - base class for custom node types (01_all_of_thrml.ipynb: ContinuousNode example)
+
+**Block Management** (from notebooks):
+- `Block` - organization of homogeneous nodes for parallel sampling (all notebooks)
+- `BlockSpec` - block structure specification with shape/dtype info (01_all_of_thrml.ipynb)
+- `BlockGibbsSpec` - Gibbs sampling configuration with free/clamped blocks (all notebooks)
+
+**Sampling Functions** (from notebooks):
+- `sample_states` - main THRML sampling function (all notebooks)
+- `sample_with_observation` - sampling with clamped/observed nodes (01_all_of_thrml.ipynb)
+- `SamplingSchedule` - warmup, samples, steps_per_sample configuration (all notebooks)
+
+**Samplers/Conditionals** (from notebooks):
+- `AbstractConditionalSampler` - base class for custom samplers (01_all_of_thrml.ipynb: GaussianSampler)
+- `CategoricalGibbsConditional` - categorical softmax sampler (00_probabilistic_computing.ipynb)
+- `SpinGibbsConditional` - spin Gibbs sampler (02_spin_models.ipynb: ExtendedSpinGibbsSampler)
+
+**Factors & Interactions** (from notebooks):
+- `AbstractFactor` - base class for custom factors (01_all_of_thrml.ipynb: QuadraticFactor, LinearFactor, CouplingFactor)
+- `CategoricalEBMFactor` - categorical energy-based model factor (00_probabilistic_computing.ipynb)
+- `SpinEBMFactor` - spin EBM factor, supports arbitrary-order interactions (02_spin_models.ipynb)
+- `InteractionGroup` - specifies head/tail nodes and parameters for conditional updates (01_all_of_thrml.ipynb)
+
+**Program Types** (from notebooks):
+- `FactorSamplingProgram` - factor-based sampling program (all notebooks)
+- `BlockSamplingProgram` - lower-level program using InteractionGroups directly (01_all_of_thrml.ipynb)
+
+**Observers** (from notebooks):
+- `MomentAccumulatorObserver` - accumulates moments/statistics during sampling (01_all_of_thrml.ipynb)
+- `StateObserver` - observes and records states during sampling (01_all_of_thrml.ipynb)
+
+**State Management** (from notebooks):
+- `make_empty_block_state` - initialize block state structures (01_all_of_thrml.ipynb)
+- `block_state_to_global` - convert block state to global representation (01_all_of_thrml.ipynb)
+- `from_global_state` - extract block state from global representation (01_all_of_thrml.ipynb)
+- `DEFAULT_NODE_SHAPE_DTYPES` - default type mappings for standard nodes (01_all_of_thrml.ipynb)
+
+**Ising/Boltzmann Models** (from 02_spin_models.ipynb):
+- `IsingEBM` - Ising/Boltzmann machine model representation
+- `IsingSamplingProgram` - specialized program for Ising models
+- `IsingTrainingSpec` - training configuration for Ising models
+- `estimate_kl_grad` - KL divergence gradient estimation for training
+- `hinton_init` - Hinton initialization for Boltzmann machines
+
+**Advanced Patterns** (from notebooks):
+- Custom node types via `AbstractNode` inheritance (01_all_of_thrml.ipynb: ContinuousNode)
+- Custom factors via `AbstractFactor` (01_all_of_thrml.ipynb: QuadraticFactor, LinearFactor, CouplingFactor)
+- Custom interactions (01_all_of_thrml.ipynb: LinearInteraction, QuadraticInteraction)
+- Custom samplers via `AbstractConditionalSampler` (01_all_of_thrml.ipynb: GaussianSampler)
+- Heterogeneous graphs with mixed node types (01_all_of_thrml.ipynb: SpinNode + ContinuousNode)
+- NetworkX graph integration with THRML nodes (all notebooks)
+- Graph coloring for parallel block sampling (all notebooks)
+- Clamping/conditioning with `sample_with_observation` (01_all_of_thrml.ipynb)
+- Higher-order interactions (02_spin_models.ipynb: cubic and beyond)
+- PCA visualization of high-dimensional samples (01_all_of_thrml.ipynb)
+
+**Active Inference Integration**:
+- `ThrmlInferenceEngine` - wrapper for THRML in active inference context (Examples 03-06, 09-10, 12, 14-15)
+- **Examples 00-02**: PRIMARY examples demonstrating comprehensive THRML methods from notebooks
+- **Examples 03-06, 09-10, 14-15**: Direct THRML inference via `ThrmlInferenceEngine`
+- **Examples 03-05, 15**: Agents use THRML internally for perception
+- **Example 06**: THRML sampling comparison with analytical Beta-Binomial inference
+- **Example 09**: THRML state estimation with noisy observations in control
+- **Example 11**: COMPREHENSIVE THRML example - all methods in detail
+- **Example 13**: THRML sampling comparison on subset of meta-analysis trials
+- All examples use real THRML sampling, not mocks or placeholders
+
+**References**:
+- Comprehensive patterns: `examples/01_all_of_thrml.ipynb`
+- Potts models: `examples/00_probabilistic_computing.ipynb`
+- Spin/Ising models: `examples/02_spin_models.ipynb`
+
+## Error Handling
+
+- Check for required dependencies
+- Handle missing data gracefully
+- Provide clear error messages
+- Continue execution when possible
+
+## Documentation Standards
+
+- File docstring explains example purpose
+- Comments explain each major step
+- Print statements explain outputs
+- Document expected results
+
+## Dependencies
+
+### Required
+- All active_inference modules
+- `jax` and `jax.numpy`
+- `matplotlib` (for visualization)
+
+### Optional
+- `jupyter` (for notebook versions)
+
+## Example: Good Example Design
+
+```python
+"""Example: Basic variational inference.
+
+This example demonstrates:
+1. Creating a generative model
+2. Performing state inference
+3. Calculating free energy
+4. Visualizing results
+"""
+
+import jax
+import jax.numpy as jnp
+from active_inference.core import GenerativeModel, variational_free_energy
+from active_inference.inference import ThrmlInferenceEngine
+from active_inference.utils import plot_belief_trajectory
+
+def main():
+    """Run basic inference example."""
+    print("Creating generative model...")
+    model = GenerativeModel(n_states=4, n_observations=4, n_actions=2)
+
+    # Create THRML inference engine
+    thrml_engine = ThrmlInferenceEngine(model=model, n_samples=200, n_warmup=50, steps_per_sample=5)
+
+    print("Performing inference...")
+    key = jax.random.key(42)
+    observation = 0
+    posterior = thrml_engine.infer_with_sampling(key=key, observation=observation)
+    fe = variational_free_energy(observation, posterior, model)
+
+    print(f"Posterior: {posterior}")
+    print(f"Free Energy: {fe}")
+
+    print("Visualizing results...")
+    fig, axes = plot_belief_trajectory([prior, posterior])
+    fig.savefig("inference_result.png")
+    print("Saved plot to inference_result.png")
+
+if __name__ == "__main__":
+    main()
+```

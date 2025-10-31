@@ -1,0 +1,75 @@
+{
+  "example_name": "04_mdp_example",
+  "timestamp": "20251031_120037",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/04_mdp_example/20251031_120037",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 1867,
+      "total_size_formatted": "1.8KB",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 1867,
+          "size_formatted": "1.8KB"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 6747,
+      "total_size_formatted": "6.6KB",
+      "files": [
+        {
+          "name": "mdp_episodes.npz",
+          "size": 6747,
+          "size_formatted": "6.6KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 4,
+      "total_size": 298244,
+      "total_size_formatted": "291.3KB",
+      "files": [
+        {
+          "name": "mdp_analysis.pdf",
+          "size": 27682,
+          "size_formatted": "27.0KB"
+        },
+        {
+          "name": "mdp_analysis.png",
+          "size": 203407,
+          "size_formatted": "198.6KB"
+        },
+        {
+          "name": "mdp_model.pdf",
+          "size": 20698,
+          "size_formatted": "20.2KB"
+        },
+        {
+          "name": "mdp_model.png",
+          "size": 46457,
+          "size_formatted": "45.4KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 22556,
+      "total_size_formatted": "22.0KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 22556,
+          "size_formatted": "22.0KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 7,
+    "size": 329414,
+    "size_formatted": "321.7KB"
+  }
+}

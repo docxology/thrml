@@ -1,0 +1,42 @@
+{
+  "example_name": "08_signal_processing",
+  "timestamp": "20251031_120258",
+  "start_time": "2025-10-31 12:02:58.777371",
+  "end_time": "2025-10-31 12:03:49.948594",
+  "duration_seconds": 51.171223,
+  "metrics": {
+    "estimation_accuracy": 0.805,
+    "observation_accuracy": 0.805,
+    "improvement_pct": 0.0,
+    "mae_estimation": 1.64,
+    "mae_observation": 1.64,
+    "mae_reduction_pct": 0.0,
+    "n_steps": 200,
+    "n_states": 20,
+    "thrml_n_samples": 100
+  },
+  "performance_metrics": {},
+  "section_timings": {
+    "Configuration": 0.0005381107330322266,
+    "Model Creation": 0.7510459423065186,
+    "Signal Generation": 0.3696260452270508,
+    "THRML Sequential Inference": 49.15926790237427,
+    "Performance Analysis": 0.001216888427734375,
+    "Visualization": 0.8706347942352295,
+    "Summary Metrics": 0.00045990943908691406
+  },
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 7,
+    "total_size_bytes": 570637,
+    "total_size_formatted": "557.3KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/08_signal_processing/20251031_120258"
+}

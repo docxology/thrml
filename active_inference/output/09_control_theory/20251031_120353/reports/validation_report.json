@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-10-31T12:04:47.087498",
+  "example": "09_control_theory",
+  "total_validations": 4,
+  "passed": 4,
+  "failed": 0,
+  "validations": [
+    {
+      "name": "lqr_gain",
+      "timestamp": "2025-10-31T12:03:54.167708",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "lqr_cost_matrix",
+      "timestamp": "2025-10-31T12:03:54.167765",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "thrml_beliefs",
+      "timestamp": "2025-10-31T12:04:44.949427",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "thrml_estimated_positions",
+      "timestamp": "2025-10-31T12:04:44.949661",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    }
+  ]
+}

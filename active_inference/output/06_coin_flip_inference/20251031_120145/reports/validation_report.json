@@ -1,0 +1,40 @@
+{
+  "timestamp": "2025-10-31T12:02:39.848131",
+  "example": "06_coin_flip_inference",
+  "total_validations": 1,
+  "passed": 1,
+  "failed": 0,
+  "validations": [
+    {
+      "name": "coin_flips",
+      "timestamp": "2025-10-31T12:01:46.411141",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        },
+        "binary": {
+          "passed": true,
+          "error": null
+        },
+        "correct_length": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    }
+  ]
+}

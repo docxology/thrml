@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Model Validation Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+h1 { color: #333; }
+.passed { color: green; }
+.failed { color: red; }
+.warning { color: orange; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #4CAF50; color: white; }
+</style>
+</head>
+<body>
+<h1>Model Validation Report</h1>
+<p>Generated: 2025-10-31 12:05:00</p>
+<h2>Summary</h2>
+<p>Total checks: 9</p>
+<p class='passed'>Passed: 5</p>
+<p class='failed'>Failed: 4</p>
+<h2>Validation Results</h2>
+<table>
+<tr><th>Check</th><th>Status</th><th>Message</th><th>Severity</th></tr>
+<tr class='passed'>
+<td>array_validation_observation_model_A</td>
+<td>✓ Pass</td>
+<td>Array valid: shape=(4, 4)</td>
+<td>INFO</td>
+</tr>
+<tr class='passed'>
+<td>observation_model_normalization</td>
+<td>✓ Pass</td>
+<td>A matrix properly normalized</td>
+<td>INFO</td>
+</tr>
+<tr class='passed'>
+<td>array_validation_transition_model_B</td>
+<td>✓ Pass</td>
+<td>Array valid: shape=(4, 4, 4)</td>
+<td>INFO</td>
+</tr>
+<tr class='failed'>
+<td>transition_model_action_0</td>
+<td>✗ Fail</td>
+<td>B[0] rows don't sum to 1</td>
+<td>ERROR</td>
+</tr>
+<tr class='failed'>
+<td>transition_model_action_1</td>
+<td>✗ Fail</td>
+<td>B[1] rows don't sum to 1</td>
+<td>ERROR</td>
+</tr>
+<tr class='failed'>
+<td>transition_model_action_2</td>
+<td>✗ Fail</td>
+<td>B[2] rows don't sum to 1</td>
+<td>ERROR</td>
+</tr>
+<tr class='failed'>
+<td>transition_model_action_3</td>
+<td>✗ Fail</td>
+<td>B[3] rows don't sum to 1</td>
+<td>ERROR</td>
+</tr>
+<tr class='passed'>
+<td>distribution_prior_D</td>
+<td>✓ Pass</td>
+<td>Valid probability distribution (sum=1.000000)</td>
+<td>INFO</td>
+</tr>
+<tr class='passed'>
+<td>array_validation_preferences_C</td>
+<td>✓ Pass</td>
+<td>Array valid: shape=(4,)</td>
+<td>INFO</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "example_name": "13_coin_flip_meta_analysis",
+  "timestamp": "20251031_120525",
+  "start_time": "2025-10-31 12:05:25.096178",
+  "end_time": "2025-10-31 12:05:29.857209",
+  "duration_seconds": 4.761031,
+  "metrics": {
+    "total_trials": 36,
+    "mean_bias_error": 0.0615115491305284,
+    "median_bias_error": 0.04999999999999996,
+    "ci_coverage": 0.9444444444444444,
+    "regression_r_squared": 0.25496333837509155,
+    "regression_slope": -0.057248227298259735
+  },
+  "performance_metrics": {},
+  "section_timings": {
+    "Configuration": 0.0007538795471191406,
+    "Parameter Sweep": 0.6487243175506592,
+    "Data Aggregation": 0.002328634262084961,
+    "Statistical Analysis": 1.3269281387329102,
+    "Visualization": 2.7241058349609375,
+    "Summary Metrics": 0.03415703773498535
+  },
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 15,
+    "total_size_bytes": 703190,
+    "total_size_formatted": "686.7KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/13_coin_flip_meta_analysis/20251031_120525"
+}

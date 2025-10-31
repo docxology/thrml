@@ -1,0 +1,10 @@
+{
+  "seed": 42,
+  "grid_size": 3,
+  "n_observations": 5,
+  "observation_noise": 0.2,
+  "goal_location": [
+    2,
+    2
+  ]
+}

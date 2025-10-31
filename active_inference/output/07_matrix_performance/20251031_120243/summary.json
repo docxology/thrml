@@ -1,0 +1,35 @@
+{
+  "example_name": "07_matrix_performance",
+  "timestamp": "20251031_120243",
+  "start_time": "2025-10-31 12:02:43.151583",
+  "end_time": "2025-10-31 12:02:57.708695",
+  "duration_seconds": 14.557112,
+  "metrics": {
+    "best_throughput_mupdates_per_sec": 2.732175944849743,
+    "best_parallel_throughput": 10.891761293994955,
+    "parallel_speedup": 43.258088507194174,
+    "parallel_efficiency_pct": 43.258088507194174
+  },
+  "performance_metrics": {},
+  "section_timings": {
+    "Configuration": 0.00041413307189941406,
+    "Grid Size Scaling": 6.700790166854858,
+    "Batch Size Scaling": 7.0579352378845215,
+    "Visualization": 0.7652380466461182,
+    "Summary Metrics": 0.0003008842468261719
+  },
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 6,
+    "total_size_bytes": 217381,
+    "total_size_formatted": "212.3KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/07_matrix_performance/20251031_120243"
+}

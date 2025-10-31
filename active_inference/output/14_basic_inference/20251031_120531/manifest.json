@@ -1,0 +1,75 @@
+{
+  "example_name": "14_basic_inference",
+  "timestamp": "20251031_120531",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/14_basic_inference/20251031_120531",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 1555,
+      "total_size_formatted": "1.5KB",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 1555,
+          "size_formatted": "1.5KB"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 1590,
+      "total_size_formatted": "1.6KB",
+      "files": [
+        {
+          "name": "inference_results.npz",
+          "size": 1590,
+          "size_formatted": "1.6KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 4,
+      "total_size": 247476,
+      "total_size_formatted": "241.7KB",
+      "files": [
+        {
+          "name": "inference_analysis.png",
+          "size": 152003,
+          "size_formatted": "148.4KB"
+        },
+        {
+          "name": "inference_analysis.pdf",
+          "size": 25325,
+          "size_formatted": "24.7KB"
+        },
+        {
+          "name": "model_matrices.pdf",
+          "size": 22480,
+          "size_formatted": "22.0KB"
+        },
+        {
+          "name": "model_matrices.png",
+          "size": 47668,
+          "size_formatted": "46.6KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 9583,
+      "total_size_formatted": "9.4KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 9583,
+          "size_formatted": "9.4KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 7,
+    "size": 260204,
+    "size_formatted": "254.1KB"
+  }
+}

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="1.662" timestamp="2025-10-31T07:53:58.230617-07:00" hostname="timelock.local"><testcase classname="tests.test_readme" name="test_readme_quick_example" time="1.459" /></testsuite></testsuites>

@@ -1,0 +1,48 @@
+{
+  "example_name": "10_active_inference_fundamentals",
+  "timestamp": "20251031_120449",
+  "start_time": "2025-10-31 12:04:49.693747",
+  "end_time": "2025-10-31 12:04:52.670044",
+  "duration_seconds": 2.976297,
+  "metrics": {
+    "observation": 2,
+    "prior_entropy_bits": 2.0,
+    "posterior_entropy_bits": 0.2942439913749695,
+    "information_gain_bits": 1.7057559490203857,
+    "kl_divergence_nats": 1.1823399066925049,
+    "variational_free_energy": 1.3943133354187012,
+    "map_state": 2,
+    "posterior_confidence": 0.9599999785423279,
+    "policy_entropy_precision_0.5": 0.30861660838127136,
+    "policy_entropy_precision_1.0": 0.03293053060770035,
+    "policy_entropy_precision_2.0": 0.00020971681806258857,
+    "policy_entropy_precision_5.0": 1.9446250165700008e-11
+  },
+  "performance_metrics": {
+    "State Inference": 0.9012179374694824
+  },
+  "section_timings": {
+    "Configuration": 0.0005180835723876953,
+    "Generative Model": 0.5293087959289551,
+    "Free Energy Minimization": 0.9350080490112305,
+    "Precision Control": 0.12375712394714355,
+    "Expected Free Energy Analysis": 0.0004780292510986328,
+    "Data Saving": 0.00045180320739746094,
+    "Visualization": 1.337759017944336,
+    "Metrics": 0.03044295310974121
+  },
+  "validation_summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 9,
+    "total_size_bytes": 371583,
+    "total_size_formatted": "362.9KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/10_active_inference_fundamentals/20251031_120449"
+}

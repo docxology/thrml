@@ -1,0 +1,85 @@
+{
+  "example_name": "06_coin_flip_inference",
+  "timestamp": "20251031_120145",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/06_coin_flip_inference/20251031_120145",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 250,
+      "total_size_formatted": "250.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 250,
+          "size_formatted": "250.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 60624,
+      "total_size_formatted": "59.2KB",
+      "files": [
+        {
+          "name": "inference_results.npz",
+          "size": 60624,
+          "size_formatted": "59.2KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 6,
+      "total_size": 526725,
+      "total_size_formatted": "514.4KB",
+      "files": [
+        {
+          "name": "final_posterior_comparison.pdf",
+          "size": 18853,
+          "size_formatted": "18.4KB"
+        },
+        {
+          "name": "final_posterior_comparison.png",
+          "size": 73901,
+          "size_formatted": "72.2KB"
+        },
+        {
+          "name": "inference_evolution.pdf",
+          "size": 35055,
+          "size_formatted": "34.2KB"
+        },
+        {
+          "name": "inference_evolution.png",
+          "size": 228712,
+          "size_formatted": "223.4KB"
+        },
+        {
+          "name": "posterior_checkpoints.pdf",
+          "size": 18968,
+          "size_formatted": "18.5KB"
+        },
+        {
+          "name": "posterior_checkpoints.png",
+          "size": 151236,
+          "size_formatted": "147.7KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 17257,
+      "total_size_formatted": "16.9KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 17257,
+          "size_formatted": "16.9KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 9,
+    "size": 604856,
+    "size_formatted": "590.7KB"
+  }
+}

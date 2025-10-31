@@ -1,0 +1,36 @@
+{
+  "example_name": "03_precision_control",
+  "timestamp": "20251031_120025",
+  "start_time": "2025-10-31 12:00:25.073868",
+  "end_time": "2025-10-31 12:00:36.507356",
+  "duration_seconds": 11.433488,
+  "metrics": {
+    "Low_Exploratory_mean_entropy": 1.9385108649730682,
+    "Low_Exploratory_mean_free_energy": 2.271349608898163,
+    "Low_Exploratory_goal_reached": true,
+    "Low_Exploratory_steps_to_goal": 4,
+    "Medium_Balanced_mean_entropy": 1.1208103522658348,
+    "Medium_Balanced_mean_free_energy": 2.3591780960559845,
+    "Medium_Balanced_goal_reached": false,
+    "High_Exploitative_mean_entropy": 0.8498054385185242,
+    "High_Exploitative_mean_free_energy": 2.648450779914856,
+    "High_Exploitative_goal_reached": true,
+    "High_Exploitative_steps_to_goal": 5
+  },
+  "performance_metrics": {},
+  "section_timings": {},
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 9,
+    "total_size_bytes": 338744,
+    "total_size_formatted": "330.8KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/03_precision_control/20251031_120025"
+}

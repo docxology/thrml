@@ -1,0 +1,153 @@
+# Utils Module Coding Rules
+
+## General Principles
+
+1. **Real Calculations**: Actual metrics, no approximations
+2. **Modular Design**: Each function is independently usable
+3. **JAX Compatible**: All functions work with JAX arrays
+4. **Optional Dependencies**: Visualization optional (graceful degradation)
+5. **THRML Integration**: Designed for THRML observer integration
+
+## Code Style
+
+- Use `jax.numpy` for all numerical operations
+- Use type annotations: `Float[Array, "shape"]`
+- Handle optional matplotlib gracefully
+- Keep metrics and visualization separate
+- Provide clear function names
+
+## Function Design
+
+### Metric Functions
+- Must accept JAX arrays
+- Must handle numerical edge cases
+- Must normalize distributions when needed
+- Must return scalar or array values
+- Must be JAX-compatible (jit, vmap)
+
+### Visualization Functions
+- Must check for matplotlib availability
+- Must raise ImportError if matplotlib missing
+- Must return figure and axes
+- Must accept optional parameters for customization
+- Must handle empty data gracefully
+
+## THRML Integration Guidelines
+
+### Current State
+- Utilities work with standard arrays
+- Compatible with THRML-generated data
+
+### Target Integration
+1. **Observers**: Use THRML observers for metrics collection
+2. **Sampling Visualization**: Visualize THRML sampling trajectories
+3. **Factor Visualization**: Visualize THRML factor graphs
+4. **Performance Tracking**: Use THRML observers for performance
+
+### Integration Checklist
+- [ ] Create THRML observer for metrics collection
+- [ ] Visualize THRML sampling trajectories
+- [ ] Visualize THRML factor graphs
+- [ ] Track performance via THRML observers
+
+## Testing Requirements
+
+- All metrics must have tests
+- Test calculation correctness
+- Test edge cases (empty data, single values)
+- Test visualization (no errors, check if matplotlib available)
+- Test numerical stability
+
+## Documentation Standards
+
+- Document metric formulas
+- Explain visualization output
+- Provide usage examples
+- Document THRML integration points
+
+## Error Handling
+
+- Validate input dimensions
+- Handle numerical edge cases (log(0), division by zero)
+- Check matplotlib availability for visualization
+- Provide clear error messages
+- Never return NaN without checking
+
+## Performance Considerations
+
+- Use vectorized operations
+- Avoid Python loops
+- Use `jax.jit` for frequently called metrics
+- Cache expensive computations
+
+## Dependencies
+
+### Required
+- `jax >= 0.4.0`
+- `jax.numpy`
+
+### Optional
+- `matplotlib >= 3.7.1`: For visualization
+
+### THRML Integration
+- `thrml.observers`: For metrics collection (future)
+- `thrml.factor`: For factor visualization (future)
+
+## Example: Good Metric Design
+
+```python
+def calculate_kl_divergence(
+    p: Float[Array, "n"],
+    q: Float[Array, "n"],
+) -> Float[Array, ""]:
+    """Calculate KL divergence KL[P || Q].
+
+    Formula: KL[P || Q] = Σ P(x) log(P(x) / Q(x))
+    """
+    # Numerical stability
+    p = p + 1e-16
+    q = q + 1e-16
+    p = p / jnp.sum(p)
+    q = q / jnp.sum(q)
+
+    # Calculate KL
+    kl = jnp.sum(p * (jnp.log(p) - jnp.log(q)))
+    return kl
+```
+
+## Example: Good Visualization Design
+
+```python
+def plot_belief_trajectory(
+    beliefs: list[Float[Array, "n_states"]],
+    true_states: Optional[list[int]] = None,
+    figsize: tuple[int, int] = (12, 6),
+):
+    """Plot belief trajectory over time."""
+    try:
+        import matplotlib.pyplot as plt
+    except ImportError:
+        raise ImportError("matplotlib required for visualization")
+
+    beliefs_array = jnp.stack(beliefs)
+    n_steps, n_states = beliefs_array.shape
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figsize)
+
+    # Plot belief heatmap
+    im = ax1.imshow(beliefs_array.T, aspect="auto", cmap="viridis")
+    ax1.set_xlabel("Time Step")
+    ax1.set_ylabel("State")
+    ax1.set_title("Belief Trajectory")
+    plt.colorbar(im, ax=ax1)
+
+    # Plot entropy
+    entropies = [calculate_entropy(b) for b in beliefs]
+    ax2.plot(entropies)
+    ax2.set_xlabel("Time Step")
+    ax2.set_ylabel("Belief Entropy")
+    ax2.set_title("Uncertainty Over Time")
+
+    plt.tight_layout()
+    return fig, (ax1, ax2)
+```

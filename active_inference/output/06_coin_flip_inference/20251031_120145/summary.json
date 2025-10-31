@@ -1,0 +1,62 @@
+{
+  "example_name": "06_coin_flip_inference",
+  "timestamp": "20251031_120145",
+  "start_time": "2025-10-31 12:01:45.892380",
+  "end_time": "2025-10-31 12:02:39.845693",
+  "duration_seconds": 53.953313,
+  "metrics": {
+    "n_flips": 200,
+    "n_heads": 143,
+    "n_tails": 57,
+    "observed_frequency": 0.715,
+    "true_bias": 0.7,
+    "final_mean_estimate": 0.7128712871287128,
+    "final_estimation_error": 0.012871287128712883,
+    "final_entropy": -2.032296151419132,
+    "true_in_credible_interval": true,
+    "credible_interval_width": 0.12429419571252565,
+    "thrml_n_samples": 100,
+    "thrml_n_warmup": 25,
+    "thrml_steps_per_sample": 3,
+    "thrml_n_bias_levels": 50,
+    "thrml_final_mean": 0.30612245202064514,
+    "thrml_final_error": 0.3938775479793548,
+    "thrml_final_kl_div": 36.84136199951172,
+    "thrml_mean_kl_div": 32.22356595039368,
+    "analytical_vs_thrml_mean_diff": 0.4067488351080677,
+    "error_at_1_flips": 0.36666666666666664,
+    "error_at_5_flips": 0.12857142857142856,
+    "error_at_10_flips": 0.050000000000000044,
+    "error_at_20_flips": 0.11818181818181828,
+    "error_at_50_flips": 0.06923076923076932,
+    "thrml_error_at_1_flips": 0.005306255817413286,
+    "thrml_error_at_5_flips": 0.23612244129180904,
+    "thrml_error_at_10_flips": 0.40285716652870174,
+    "thrml_error_at_20_flips": 0.4171428501605987,
+    "thrml_error_at_50_flips": 0.4275510430335998
+  },
+  "performance_metrics": {},
+  "section_timings": {
+    "Configuration": 0.000530242919921875,
+    "Data Generation": 0.5003750324249268,
+    "THRML Model Setup": 0.4625890254974365,
+    "Sequential Bayesian Inference": 50.86419701576233,
+    "Data Saving": 0.006392002105712891,
+    "Visualization": 2.099564790725708,
+    "Metrics": 0.001094818115234375
+  },
+  "validation_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 9,
+    "total_size_bytes": 604856,
+    "total_size_formatted": "590.7KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/06_coin_flip_inference/20251031_120145"
+}

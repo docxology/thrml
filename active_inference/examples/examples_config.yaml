@@ -1,0 +1,303 @@
+# Active Inference Examples - Centralized Configuration
+# This file controls parameters for all examples, making the suite easily configurable
+#
+# Examples 00-02: Direct translations from THRML notebooks with complete real THRML methods
+# Examples 03-06, 09-10, 12, 14-15: Use active_inference framework with THRML integration via ThrmlInferenceEngine
+# Examples 07-08: JAX foundation examples (matrix operations, signal processing)
+# Example 11: PRIMARY comprehensive THRML integration example
+# Example 13: Meta-analysis with optional THRML comparison (disabled by default for speed)
+#
+# Total runtime with current config: ~4-5 minutes for all 16 examples
+global:
+  seed: 42
+  output_base: "../output"
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  enable_profiling: true
+  enable_validation: true
+  default_dpi: 150
+  plot_formats: ["png", "pdf"]
+
+# Example 00: Probabilistic Computing (from notebook)
+example_00:
+  name: "00_probabilistic_computing"
+  side_length: 20
+  n_cats: 5  # Number of categories in Potts model
+  beta: 1.0  # Temperature parameter
+  n_batches: 100  # Parallel sampling chains
+  n_samples: 100
+  n_warmup: 0
+  steps_per_sample: 5
+  seed: 4242
+
+# Example 01: All of THRML (from notebook)
+example_01_thrml:
+  name: "01_all_of_thrml"
+  grid_size: 5  # For Gaussian PGM grid
+  n_batches_gaussian: 1000  # Parallel chains for Gaussian sampling
+  n_samples_gaussian: 10000
+  n_warmup_gaussian: 0
+  steps_per_sample_gaussian: 5
+  # Heterogeneous graph parameters
+  hetero_grid_rows: 30
+  hetero_grid_cols: 30
+  hetero_p_continuous: 0.5  # Probability of continuous vs spin node
+  hetero_edge_lengths: [1, 3, 5]  # Skip connections
+  hetero_n_batches: 50
+  hetero_n_samples: 300
+  hetero_n_warmup: 100
+  hetero_steps_per_sample: 15
+  seed: 4242
+
+# Example 02: Spin Models (from notebook)
+example_02_spin:
+  name: "02_spin_models"
+  pegasus_size: 14  # DWave Pegasus graph size
+  n_data_nodes: 500  # Number of visible nodes for EBM training
+  data_batch_size: 50  # Batch size for training gradient estimation
+  n_chains_free: 50  # Parallel chains for free sampling
+  n_chains_clamped: 1  # Chains for clamped sampling
+  schedule_warmup: 5
+  schedule_n_samples: 100
+  schedule_steps_per_sample: 5
+  seed: 4242
+
+# Example 14: Basic Inference (formerly 01)
+example_14:
+  name: "14_basic_inference"
+  n_states: 4
+  n_observations: 4
+  n_actions: 2
+  n_inference_iterations: 160
+  test_observations: [0, 1, 2, 3, 0, 1]
+  observation_noise: 0.05
+  # THRML sampling parameters
+  n_samples: 200
+  n_warmup: 50
+  steps_per_sample: 5
+
+# Example 15: Grid World Agent (formerly 02)
+example_15:
+  name: "15_grid_world_agent"
+  grid_size: 5
+  n_observations: 10
+  observation_noise: 0.1
+  goal_location: [3, 3]
+  obstacle_locations: [[1, 1], [1, 2]]
+  max_steps: 50
+  planning_horizon: 3
+  sensory_precision: 1.0
+  state_precision: 1.0
+  action_precision: 2.0
+  goal_preference_strength: 3.0
+  # THRML sampling parameters
+  n_samples: 200
+  n_warmup: 50
+  steps_per_sample: 5
+
+# Example 03: Precision Control
+example_03:
+  name: "03_precision_control"
+  grid_size: 3
+  n_observations: 5
+  observation_noise: 0.2
+  goal_location: [2, 2]
+  planning_horizon: 2
+  precision_values: [0.5, 2.0, 10.0]
+  precision_labels: ["Low (Exploratory)", "Medium (Balanced)", "High (Exploitative)"]
+  max_steps: 8
+  goal_preference_strength: 2.0
+  # THRML sampling parameters
+  n_samples: 100
+  n_warmup: 25
+  steps_per_sample: 3
+
+# Example 04: MDP Example
+example_04:
+  name: "04_mdp_example"
+  n_states: 5
+  reward_state: 4  # Rightmost state
+  n_actions: 2
+  max_steps: 20
+  sensory_precision: 10.0
+  action_precision: 3.0
+  planning_horizon: 2
+  reward_preference_strength: 5.0
+  # THRML sampling parameters
+  n_samples: 100
+  n_warmup: 25
+  steps_per_sample: 3
+
+# Example 05: POMDP Example
+example_05:
+  name: "05_pomdp_example"
+  observation_accuracy: 0.85
+  n_episodes: 3
+  max_steps: 30
+  sensory_precision: 2.0
+  action_precision: 2.0
+  planning_horizon: 2
+  # THRML sampling parameters
+  n_samples: 100
+  n_warmup: 25
+  steps_per_sample: 3
+
+# Example 06: Coin Flip Inference
+example_06:
+  name: "06_coin_flip_inference"
+  true_bias: 0.7
+  prior_alpha: 1.0
+  prior_beta: 1.0
+  n_flips: 200
+  checkpoints: [1, 5, 10, 20, 50]
+  n_iterations: 20
+  n_warmup: 5
+  # THRML sampling parameters for bias inference
+  n_samples: 100
+  thrml_n_warmup: 25
+  steps_per_sample: 3
+  n_bias_levels: 50  # Discretization of bias space [0,1]
+
+# Example 07: THRML Performance Benchmarking (using exact Potts model from notebook 00)
+example_07:
+  name: "07_matrix_performance"
+  side_lengths: [5, 10, 15, 20]  # Grid dimensions (NxN) - exact as notebook
+  batch_sizes: [1, 10, 50, 100]  # Parallel chains
+  n_cats: 5  # Categories (exact as notebook)
+  beta: 1.0  # Coupling strength (exact as notebook)
+  n_samples: 100
+  n_warmup: 10
+  steps_per_sample: 5
+
+# Example 08: THRML Temporal Inference (Signal Processing)
+example_08:
+  name: "08_signal_processing"
+  n_states: 20  # Discretized signal levels
+  n_steps: 200  # Time series length
+  observation_noise: 0.2  # Observation corruption rate
+  smoothness: 0.85  # Signal smoothness (higher = smoother)
+  # THRML sampling parameters
+  n_samples: 100
+  n_warmup: 25
+  steps_per_sample: 3
+
+# Example 09: Control Theory
+example_09:
+  name: "09_control_theory"
+  n_steps: 200
+  dt: 0.1
+  setpoint: 1.0
+  disturbance_time: 100
+  disturbance_magnitude: 0.5
+  # LQR parameters
+  lqr_Q_diag: [10.0, 1.0]
+  lqr_R: 0.1
+  # PID parameters
+  pid_Kp: 2.0
+  pid_Ki: 0.5
+  pid_Kd: 1.0
+  # System parameters
+  A_matrix: [[1.0, 0.1], [0.0, 1.0]]
+  B_matrix: [[0.005], [0.1]]
+  # THRML state estimation parameters
+  n_samples: 100
+  n_warmup: 25
+  steps_per_sample: 3
+  n_state_bins: 30  # Discretization of state space for THRML
+  observation_noise_std: 0.1  # Sensor noise standard deviation
+
+# Example 10: Active Inference Fundamentals
+example_10:
+  name: "10_active_inference_fundamentals"
+  n_states: 4
+  n_observations: 4
+  n_actions: 2
+  n_inference_iterations: 16
+  observation_noise: 0.05
+  goal_state: 3
+  goal_preference_strength: 2.0
+  precision_values: [0.5, 1.0, 2.0, 5.0]
+  # THRML sampling parameters
+  n_samples: 200
+  n_warmup: 50
+  steps_per_sample: 5
+
+# Example 11: THRML Comprehensive (PRIMARY THRML INTEGRATION EXAMPLE)
+# Demonstrates comprehensive real THRML methods: Block, BlockGibbsSpec, CategoricalNode,
+# sample_states, FactorSamplingProgram, CategoricalEBMFactor, ThrmlInferenceEngine
+# This is the main example for THRML-based GPU-accelerated inference
+example_11:
+  name: "11_thrml_comprehensive"
+  n_states: 4
+  n_observations: 3
+  n_actions: 2
+  n_samples: 200  # THRML sampling parameters
+  n_warmup: 50
+  steps_per_sample: 5
+  test_observation: 1
+  n_categorical_nodes: 4
+  n_spin_nodes: 4
+
+# Example 12: Statistical Validation Demo
+example_12:
+  name: "12_statistical_validation_demo"
+  n_states: 4
+  n_observations: 4
+  n_actions: 4
+  n_steps: 500
+  planning_horizon: 1
+  n_samples_estimate: 1000
+  goal_state: 3
+  goal_preference_strength: 2.0
+  # THRML sampling parameters
+  n_samples: 200
+  n_warmup: 50
+  steps_per_sample: 5
+
+# Example 13: Coin Flip Meta-Analysis
+example_13:
+  name: "13_coin_flip_meta_analysis"
+  true_biases_range: [0.3, 0.7]  # Narrowed range for faster execution
+  true_biases_n: 3  # Reduced from 5 (test low, medium, high)
+  n_flips_min: 10
+  n_flips_max: 200  # Reduced from 500 for faster execution
+  n_flips_levels: 3  # Reduced from 5 (test few, medium, many flips)
+  n_repeats: 2  # Reduced from 3 (minimum for variance)
+  prior_configs:
+    weak: [1.0, 1.0]
+    medium: [5.0, 5.0]
+    # Removed strong prior for speed
+  ci_confidence: 0.95
+  n_bootstrap_samples: 200  # Reduced from 1000 (80% reduction)
+  # THRML sampling parameters for comparison
+  use_thrml_comparison: false  # Disabled THRML for speed (main bottleneck)
+  n_samples: 50  # Reduced from 100
+  n_warmup: 10  # Reduced from 25
+  steps_per_sample: 3  # Reduced from 5
+  n_bias_levels: 30  # Reduced from 50 for coarser discretization
+  thrml_fraction: 0.05  # Run THRML on only 5% of trials if enabled
+
+# Default model configurations
+defaults:
+  model:
+    observation_noise: 0.05
+    transition_noise: 0.01
+    preference_strength: 1.0
+  agent:
+    planning_horizon: 1
+    inference_iterations: 16
+    sensory_precision: 1.0
+    state_precision: 1.0
+    action_precision: 1.0
+  environment:
+    grid_size: 5
+    observation_noise: 0.1
+  visualization:
+    dpi: 150
+    figsize: [12, 8]
+    formats: ["png"]
+  profiling:
+    enabled: false
+    detailed: false
+  validation:
+    enabled: true
+    strict: false

@@ -1,0 +1,174 @@
+# Agents Module Coding Rules
+
+## General Principles
+
+1. **Unified Perception-Action**: Agent combines both perception and action in single class
+2. **Real Operations**: No mocks, actual inference and action selection
+3. **THRML Integration**: Maximize use of THRML components where applicable
+4. **Modular Planning**: Separate planning functions for flexibility
+5. **State Tracking**: Full history and free energy tracking
+
+## Code Style
+
+- Use `equinox.Module` for agent classes
+- Use `dataclass` for state structures
+- Use `jax.random` for stochastic operations
+- Use `jaxtyping` for type annotations
+- Keep perception and action methods separate but coordinated
+
+## Agent Design
+
+### ActiveInferenceAgent
+- Must accept `GenerativeModel` as core dependency
+- Must support configurable precision parameters
+- Must provide both perceive and act methods
+- Must implement full perception-action cycle in `step`
+- Must track agent state (beliefs, history, free energy)
+
+### AgentState
+- Must be immutable (functional updates)
+- Must track all relevant history
+- Must support reset to initial state
+- Should be serializable for checkpointing
+
+## Planning Functions
+
+### Design Principles
+- Must accept `GenerativeModel` and state belief
+- Must return action(s) and quality metric (EFE)
+- Must support configurable horizon
+- Must handle recursive planning correctly
+- Should optimize performance (avoid redundant calculations)
+
+### Greedy Planning
+- Single-step lookahead
+- Simple and fast
+- Good for real-time applications
+
+### Tree Search Planning
+- Multi-step lookahead
+- More expensive but better performance
+- Should support pruning strategies (future)
+
+## THRML Integration Guidelines
+
+### Current State
+- Agents use variational inference directly
+- Action selection uses direct EFE calculation
+
+### Target Integration
+1. **Perception**: Replace `infer_states` with `ThrmlInferenceEngine.infer_with_sampling`
+2. **Planning**: Use THRML sampling to evaluate EFE under uncertainty
+3. **Monitoring**: Use `thrml.observers` to track agent behavior
+4. **Belief Representation**: Use THRML factors for belief distributions
+
+### Integration Checklist
+- [ ] Make `perceive` method use THRML sampling option
+- [ ] Use THRML sampling for planning under uncertainty
+- [ ] Add THRML observers for agent monitoring
+- [ ] Convert beliefs to THRML factor representation
+
+## Function Design
+
+### Agent Methods
+- `perceive`: Must return posterior and free energy
+- `act`: Must return selected action (int)
+- `step`: Must return action, new state, and free energy
+- `reset`: Must return fresh AgentState
+- All methods must be JAX-compatible (jit, vmap)
+
+### Planning Functions
+- Must accept state belief and model
+- Must return action(s) and metric
+- Must support batch operations via `jax.vmap`
+- Must handle edge cases (single action, single state)
+
+## Testing Requirements
+
+- All agent methods must have tests in `tests/test_agents.py`
+- Test perception correctness
+- Test action selection (greedy and planned)
+- Test state tracking
+- Test free energy minimization
+- Test planning algorithms
+- Test edge cases (single action, deterministic transitions)
+
+## Documentation Standards
+
+- Document perception-action cycle clearly
+- Explain planning algorithms
+- Provide usage examples
+- Document THRML integration points
+- Explain precision parameters
+
+## Error Handling
+
+- Validate inputs (dimensions, probabilities)
+- Check agent state consistency
+- Handle invalid actions gracefully
+- Provide clear error messages
+- Never return invalid states
+
+## Performance Considerations
+
+- Use `jax.jit` for frequently called methods
+- Cache EFE calculations when possible
+- Optimize planning (pruning, caching)
+- Profile agent loops before optimizing
+
+## Dependencies
+
+### Required
+- `core`: GenerativeModel, Precision, expected_free_energy
+- `inference`: infer_states
+
+### THRML Integration
+- `thrml.sample_states`: For sampling-based perception (future)
+- `thrml.observers`: For monitoring (future)
+- `thrml.factor`: For belief representation (future)
+
+## Example: Good Agent Design
+
+```python
+class ActiveInferenceAgent(eqx.Module):
+    """Active inference agent with perception-action loop."""
+
+    model: GenerativeModel
+    precision: Precision
+    planning_horizon: int
+    inference_iterations: int
+
+    def perceive(
+        self,
+        observation: int,
+        prior_belief: Float[Array, "n_states"],
+    ) -> tuple[Float[Array, "n_states"], Float[Array, ""]]:
+        """Infer hidden states from observation."""
+        posterior, free_energy = infer_states(
+            observation=observation,
+            prior_belief=prior_belief,
+            model=self.model,
+            n_iterations=self.inference_iterations,
+        )
+        return posterior, free_energy
+
+    def act(
+        self,
+        key: Key[Array, ""],
+        state_belief: Float[Array, "n_states"],
+    ) -> int:
+        """Select action minimizing expected free energy."""
+        efe_values = batch_expected_free_energy(
+            state_belief,
+            self.model,
+            self.planning_horizon,
+        )
+
+        action_probs = PrecisionWeighting.softmax_with_precision(
+            -efe_values,
+            self.precision.action_precision,
+        )
+
+        action = jax.random.choice(key, self.model.n_actions, p=action_probs)
+        return int(action)
+```

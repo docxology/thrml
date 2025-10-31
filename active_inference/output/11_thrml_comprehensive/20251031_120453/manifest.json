@@ -1,0 +1,90 @@
+{
+  "example_name": "11_thrml_comprehensive",
+  "timestamp": "20251031_120453",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/11_thrml_comprehensive/20251031_120453",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 211,
+      "total_size_formatted": "211.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 211,
+          "size_formatted": "211.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 2,
+      "total_size": 3050,
+      "total_size_formatted": "3.0KB",
+      "files": [
+        {
+          "name": "block_management_results.npz",
+          "size": 820,
+          "size_formatted": "820.0B"
+        },
+        {
+          "name": "thrml_inference_results.npz",
+          "size": 2230,
+          "size_formatted": "2.2KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 6,
+      "total_size": 416295,
+      "total_size_formatted": "406.5KB",
+      "files": [
+        {
+          "name": "thrml_methods_architecture.pdf",
+          "size": 44627,
+          "size_formatted": "43.6KB"
+        },
+        {
+          "name": "thrml_methods_architecture.png",
+          "size": 171272,
+          "size_formatted": "167.3KB"
+        },
+        {
+          "name": "block_structure_visualization.png",
+          "size": 55621,
+          "size_formatted": "54.3KB"
+        },
+        {
+          "name": "block_structure_visualization.pdf",
+          "size": 14139,
+          "size_formatted": "13.8KB"
+        },
+        {
+          "name": "thrml_vs_standard_inference.png",
+          "size": 103560,
+          "size_formatted": "101.1KB"
+        },
+        {
+          "name": "thrml_vs_standard_inference.pdf",
+          "size": 27076,
+          "size_formatted": "26.4KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 11275,
+      "total_size_formatted": "11.0KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 11275,
+          "size_formatted": "11.0KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 10,
+    "size": 430831,
+    "size_formatted": "420.7KB"
+  }
+}

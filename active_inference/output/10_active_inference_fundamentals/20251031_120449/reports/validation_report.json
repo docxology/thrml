@@ -1,0 +1,128 @@
+{
+  "timestamp": "2025-10-31T12:04:52.671486",
+  "example": "10_active_inference_fundamentals",
+  "total_validations": 5,
+  "passed": 5,
+  "failed": 0,
+  "validations": [
+    {
+      "name": "observation_likelihood",
+      "timestamp": "2025-10-31T12:04:50.241756",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "transition_model",
+      "timestamp": "2025-10-31T12:04:50.241824",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "preferences",
+      "timestamp": "2025-10-31T12:04:50.241870",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "prior",
+      "timestamp": "2025-10-31T12:04:50.241897",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "posterior_belief",
+      "timestamp": "2025-10-31T12:04:51.148459",
+      "checks": {
+        "not_none": {
+          "passed": true,
+          "error": null
+        },
+        "not_empty": {
+          "passed": true,
+          "error": null
+        },
+        "no_nan": {
+          "passed": true,
+          "error": null
+        },
+        "finite": {
+          "passed": true,
+          "error": null
+        },
+        "valid_distribution": {
+          "passed": true,
+          "error": null
+        }
+      },
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "planning_horizon": 3,
+  "sensory_precision": 1.0,
+  "state_precision": 1.0,
+  "action_precision": 2.0,
+  "goal_preference_strength": 3.0
+}

@@ -1,0 +1,30 @@
+{
+  "example_name": "14_basic_inference",
+  "timestamp": "20251031_120531",
+  "start_time": "2025-10-31 12:05:31.319463",
+  "end_time": "2025-10-31 12:05:35.146015",
+  "duration_seconds": 3.826552,
+  "metrics": {
+    "n_observations": 6,
+    "mean_free_energy": 1.8487112720807393,
+    "final_free_energy": 1.9747495651245117,
+    "mean_kl_divergence": 0.6819998621940613,
+    "inference_accuracy": 0.8333333333333334
+  },
+  "performance_metrics": {},
+  "section_timings": {},
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 7,
+    "total_size_bytes": 260204,
+    "total_size_formatted": "254.1KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/14_basic_inference/20251031_120531"
+}

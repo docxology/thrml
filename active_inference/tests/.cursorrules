@@ -1,0 +1,208 @@
+# Tests Module Coding Rules
+
+## General Principles
+
+1. **No Mocks**: All tests use real JAX operations and data
+2. **TDD Approach**: Write tests before or alongside code
+3. **Comprehensive Coverage**: Target >90% coverage
+4. **Real Data**: Use actual probability distributions
+5. **Mathematical Correctness**: Verify formulas and properties
+
+## Code Style
+
+- Use `pytest` test framework
+- Use descriptive test names: `test_<what>_<condition>`
+- Use fixtures from `conftest.py` for common setup
+- Use `hypothesis` for property-based testing
+- Keep tests focused (one assertion per concept)
+
+## Test Organization
+
+### File Structure
+- One test file per source module
+- Test classes group related tests
+- Fixtures in `conftest.py` for sharing
+
+### Test Naming
+- Functions: `test_<function_name>_<condition>`
+- Classes: `Test<ComponentName>`
+- Fixtures: `simple_<component_name>`
+
+## Testing Requirements
+
+### Unit Tests
+- Test individual functions/methods
+- Test edge cases
+- Test error conditions
+- Verify mathematical correctness
+
+### Integration Tests
+- Test component interactions
+- Test end-to-end workflows
+- Test realistic scenarios
+
+### Property Tests
+- Use Hypothesis for generative testing
+- Test mathematical properties
+- Test invariants
+
+## THRML Integration Testing
+
+### Current Tests
+- Basic THRML component imports
+- THRML inference engine structure
+- THRML factor creation
+
+### Future Tests
+- Full THRML sampling integration
+- THRML factor conversion correctness
+- THRML observer functionality
+- THRML performance benchmarks
+
+### THRML Test Guidelines
+- Test THRML component usage
+- Test THRML factor creation
+- Test THRML sampling correctness
+- Test THRML observer integration
+- Benchmark THRML performance
+
+## Assertion Patterns
+
+### Numerical Assertions
+```python
+# Use jnp.allclose for floating point
+assert jnp.allclose(result, expected, atol=1e-6)
+
+# Check probabilities sum to 1
+assert jnp.allclose(jnp.sum(distribution), 1.0)
+
+# Check dimensions
+assert result.shape == expected_shape
+```
+
+### Property Assertions
+```python
+# Test normalization
+assert jnp.allclose(jnp.sum(model.A, axis=0), 1.0)
+
+# Test free energy properties
+assert free_energy >= 0  # VFE should be non-negative
+
+# Test belief properties
+assert jnp.all(posterior >= 0)  # Probabilities non-negative
+assert jnp.allclose(jnp.sum(posterior), 1.0)  # Normalized
+```
+
+## Fixture Design
+
+### Fixtures in `conftest.py`
+- `simple_generative_model`: Basic model for testing
+- `grid_world_env`: Grid world environment
+- `tmaze_env`: T-maze environment
+- `simple_agent`: Active inference agent
+
+### Fixture Guidelines
+- Keep fixtures simple and reusable
+- Use realistic but simple configurations
+- Make fixtures configurable when needed
+- Document fixture purpose
+
+## Test Coverage
+
+### Required Coverage
+- All public functions
+- All public methods
+- Error handling paths
+- Edge cases
+
+### Coverage Exclusions
+- `__init__.py` files
+- Type checking blocks (`if TYPE_CHECKING:`)
+- Abstract methods
+- Error re-raising
+
+## Documentation Standards
+
+- Test docstrings explain what is tested
+- Use comments for complex test logic
+- Document test data sources
+- Explain expected behavior
+
+## Error Handling Tests
+
+- Test invalid inputs (dimensions, values)
+- Test edge cases (empty, single value, extremes)
+- Test error messages
+- Test recovery from errors
+
+## Performance Considerations
+
+- Keep tests fast (< 1 second each)
+- Use `jax.jit` in tests when appropriate
+- Profile slow tests and optimize
+- Skip slow tests with `@pytest.mark.slow`
+
+## Dependencies
+
+### Required
+- `pytest >= 7.2.0`
+- `pytest-cov >= 4.0.0`
+- `hypothesis >= 6.90.0`
+
+### Test Data
+- Real JAX arrays
+- Valid probability distributions
+- Realistic configurations
+
+## Example: Good Test Design
+
+```python
+import pytest
+import jax.numpy as jnp
+from active_inference.core import GenerativeModel, variational_free_energy
+
+def test_variational_free_energy_decomposition():
+    """Test that VFE decomposes into accuracy and complexity."""
+    model = GenerativeModel(n_states=4, n_observations=4, n_actions=2)
+    belief = jnp.array([0.25, 0.25, 0.25, 0.25])
+    observation = 0
+
+    fe = variational_free_energy(observation, belief, model)
+
+    # VFE should be non-negative
+    assert fe >= 0
+
+    # VFE should decrease as belief matches observation
+    better_belief = model.get_observation_likelihood(observation)
+    better_fe = variational_free_energy(observation, better_belief, model)
+    assert better_fe < fe
+```
+
+## Example: Property-Based Test
+
+```python
+from hypothesis import given, strategies as st
+
+@given(
+    st.integers(2, 10),
+    st.integers(2, 10),
+    st.integers(2, 5),
+)
+def test_generative_model_normalization(n_states, n_obs, n_actions):
+    """Test that all model distributions are normalized."""
+    model = GenerativeModel(
+        n_states=n_states,
+        n_observations=n_obs,
+        n_actions=n_actions,
+    )
+
+    # A matrix columns sum to 1
+    assert jnp.allclose(jnp.sum(model.A, axis=0), 1.0)
+
+    # B tensor slices sum to 1
+    for a in range(n_actions):
+        assert jnp.allclose(jnp.sum(model.B[:, :, a], axis=0), 1.0)
+
+    # D vector sums to 1
+    assert jnp.allclose(jnp.sum(model.D), 1.0)
+```

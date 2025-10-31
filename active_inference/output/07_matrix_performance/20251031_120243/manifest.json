@@ -1,0 +1,70 @@
+{
+  "example_name": "07_matrix_performance",
+  "timestamp": "20251031_120243",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/07_matrix_performance/20251031_120243",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 243,
+      "total_size_formatted": "243.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 243,
+          "size_formatted": "243.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 2,
+      "total_size": 2080,
+      "total_size_formatted": "2.0KB",
+      "files": [
+        {
+          "name": "size_scaling.npz",
+          "size": 1184,
+          "size_formatted": "1.2KB"
+        },
+        {
+          "name": "batch_scaling.npz",
+          "size": 896,
+          "size_formatted": "896.0B"
+        }
+      ]
+    },
+    "plots": {
+      "count": 2,
+      "total_size": 202836,
+      "total_size_formatted": "198.1KB",
+      "files": [
+        {
+          "name": "thrml_performance.png",
+          "size": 181281,
+          "size_formatted": "177.0KB"
+        },
+        {
+          "name": "thrml_performance.pdf",
+          "size": 21555,
+          "size_formatted": "21.0KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 12222,
+      "total_size_formatted": "11.9KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 12222,
+          "size_formatted": "11.9KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 6,
+    "size": 217381,
+    "size_formatted": "212.3KB"
+  }
+}

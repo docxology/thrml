@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "n_states": 4,
+  "n_observations": 4,
+  "n_actions": 4,
+  "n_steps": 500,
+  "planning_horizon": 1,
+  "n_samples_estimate": 1000,
+  "goal_state": 3,
+  "goal_preference_strength": 2.0,
+  "n_samples": 200,
+  "n_warmup": 50,
+  "steps_per_sample": 5
+}

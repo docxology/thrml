@@ -1,0 +1,107 @@
+# Documentation Module Coding Rules
+
+## General Principles
+
+1. **Comprehensive**: Cover all major features
+2. **Clear**: Easy to understand
+3. **Examples**: Include code examples
+4. **Accurate**: Keep documentation up to date
+5. **Accessible**: Multiple entry points for different users
+
+## Documentation Style
+
+### Markdown Format
+- Use standard Markdown syntax
+- Use code blocks for examples
+- Use clear headings
+- Use lists for multiple items
+- Use tables for structured data
+
+### Code Examples
+- Use Python code blocks with syntax highlighting
+- Include complete, runnable examples
+- Add comments explaining key steps
+- Show expected outputs
+
+### Mathematical Content
+- Use LaTeX for formulas
+- Explain notation
+- Provide context
+- Reference sources
+
+## Content Organization
+
+### Structure
+- Start with overview
+- Provide getting started guide
+- Include comprehensive API reference
+- Add theoretical background
+- Include examples
+
+### Sections
+- Clear headings
+- Logical flow
+- Cross-references
+- Index/table of contents
+
+## THRML Integration Documentation
+
+### Current Status
+- Standard usage documented
+- THRML integration points mentioned
+
+### Future Additions
+- THRML integration guide
+- THRML factor construction guide
+- THRML sampling examples
+- THRML performance guide
+
+### Documentation Requirements
+- Document THRML components used
+- Explain THRML integration points
+- Provide THRML examples
+- Compare THRML vs standard approaches
+
+## Maintenance Guidelines
+
+### Keep Updated
+- Update when APIs change
+- Add examples for new features
+- Review regularly
+- Sync with code
+
+### Quality Standards
+- Clear explanations
+- Accurate code examples
+- Complete function signatures
+- Useful examples
+- No outdated information
+
+## Example: Good Documentation
+
+```markdown
+# Variational Free Energy
+
+The variational free energy quantifies the quality of the posterior approximation:
+
+$$F = E_Q[\log Q(s) - \log P(o, s)]$$
+
+This decomposes into:
+- **Accuracy**: $-E_Q[\log P(o|s)]$
+- **Complexity**: $KL[Q(s) || P(s)]$
+
+## Usage
+
+```python
+from active_inference.core import variational_free_energy, GenerativeModel
+
+model = GenerativeModel(n_states=4, n_observations=4, n_actions=2)
+belief = jnp.array([0.25, 0.25, 0.25, 0.25])
+fe = variational_free_energy(observation=0, state_belief=belief, model=model)
+print(f"Free Energy: {fe}")
+```
+
+## THRML Integration
+
+For sampling-based inference, use `ThrmlInferenceEngine` which uses THRML's block Gibbs sampling to approximate the posterior.
+```

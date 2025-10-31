@@ -1,0 +1,117 @@
+{
+  "example_name": "12_statistical_validation_demo",
+  "timestamp": "20251031_120458",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/12_statistical_validation_demo/20251031_120458",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 264,
+      "total_size_formatted": "264.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 264,
+          "size_formatted": "264.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 3,
+      "total_size": 7956,
+      "total_size_formatted": "7.8KB",
+      "files": [
+        {
+          "name": "resource_estimates.json.npz",
+          "size": 2436,
+          "size_formatted": "2.4KB"
+        },
+        {
+          "name": "trajectory.json.npz",
+          "size": 4478,
+          "size_formatted": "4.4KB"
+        },
+        {
+          "name": "fe_regression.json.npz",
+          "size": 1042,
+          "size_formatted": "1.0KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 5,
+      "total_size": 1148516,
+      "total_size_formatted": "1.1MB",
+      "files": [
+        {
+          "name": "fe_residuals.png",
+          "size": 376551,
+          "size_formatted": "367.7KB"
+        },
+        {
+          "name": "pairwise_relationships.png",
+          "size": 238423,
+          "size_formatted": "232.8KB"
+        },
+        {
+          "name": "correlation_matrix.png",
+          "size": 125365,
+          "size_formatted": "122.4KB"
+        },
+        {
+          "name": "fe_entropy_regression.png",
+          "size": 241229,
+          "size_formatted": "235.6KB"
+        },
+        {
+          "name": "fe_regression.png",
+          "size": 166948,
+          "size_formatted": "163.0KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 11393,
+      "total_size_formatted": "11.1KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 11393,
+          "size_formatted": "11.1KB"
+        }
+      ]
+    },
+    "reports": {
+      "count": 4,
+      "total_size": 12586,
+      "total_size_formatted": "12.3KB",
+      "files": [
+        {
+          "name": "validation_report.html",
+          "size": 1929,
+          "size_formatted": "1.9KB"
+        },
+        {
+          "name": "statistical_analysis.txt",
+          "size": 953,
+          "size_formatted": "953.0B"
+        },
+        {
+          "name": "resource_usage.txt",
+          "size": 1192,
+          "size_formatted": "1.2KB"
+        },
+        {
+          "name": "trajectory_validation.html",
+          "size": 8512,
+          "size_formatted": "8.3KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 14,
+    "size": 1180715,
+    "size_formatted": "1.1MB"
+  }
+}

@@ -1,0 +1,121 @@
+# Core Module Coding Rules
+
+## General Principles
+
+1. **Modular Design**: Each file serves a single, well-defined purpose
+2. **Real Methods Only**: No mocks or placeholder implementations
+3. **THRML Integration**: Maximize use of THRML components where applicable
+4. **JAX Compatibility**: All functions must be JIT-compatible and vectorizable
+5. **Type Safety**: Full type annotations using jaxtyping
+
+## Code Style
+
+- Use `jax.numpy` instead of `numpy` for all array operations
+- Use `equinox.Module` for stateful components
+- Use `jaxtyping` annotations: `Float[Array, "shape"]`, `Int[Array, "shape"]`
+- Include numerical stability checks (add small epsilon, normalize)
+
+## THRML Integration Guidelines
+
+### Current State
+- Core components use direct JAX operations
+- Generative models are matrix-based
+
+### Target Integration Points
+1. **State Representations**: Use `thrml.CategoricalNode` for discrete states
+2. **Factor Models**: Convert generative models to `thrml.factor.AbstractFactor`
+3. **Sampling**: Use `thrml.block_sampling.sample_states` for sampling-based inference
+4. **Energy-Based Formulation**: Reformulate free energy as EBM using THRML factors
+
+### Integration Checklist
+- [ ] Replace matrix operations with THRML factor-based operations where beneficial
+- [ ] Use `thrml.Block` for state block management
+- [ ] Implement `AbstractFactor` for generative model factors
+- [ ] Use `thrml.conditional_samplers` for conditional sampling
+- [ ] Leverage `thrml.observers` for inference monitoring
+
+## Function Design
+
+### Free Energy Functions
+- Must accept `GenerativeModel` as argument
+- Must handle numerical edge cases (division by zero, log(0))
+- Must be differentiable for gradient-based learning
+- Must support batch operations via `jax.vmap`
+
+### Generative Model
+- Must normalize probability distributions automatically
+- Must validate dimensions match specifications
+- Must support both discrete and (future) continuous states
+
+## Testing Requirements
+
+- All functions must have unit tests in `tests/test_core.py`
+- Test mathematical correctness (verify formulas)
+- Test numerical stability (edge cases)
+- Test batch operations
+- Test JAX transformations (jit, grad, vmap)
+
+## Documentation Standards
+
+- Module-level docstrings explain purpose
+- Function docstrings include:
+  - Purpose description
+  - Arguments with types
+  - Returns with types
+  - Mathematical formulas where applicable
+  - Usage examples for complex functions
+
+## Error Handling
+
+- Validate inputs (dimensions, probabilities sum to 1)
+- Use descriptive error messages
+- Raise `ValueError` for invalid inputs
+- Never silently fail or return NaN without checking
+
+## Performance Considerations
+
+- Minimize Python loops (use JAX operations)
+- Prefer vectorized operations
+- Use `jax.jit` for frequently called functions
+- Profile before optimizing
+
+## Dependencies
+
+### Required
+- `jax >= 0.4.0`
+- `jax.numpy`
+- `equinox >= 0.11.2`
+- `jaxtyping >= 0.2.23`
+
+### THRML Integration
+- `thrml >= 0.1.3` (for future integration)
+- Prefer THRML components over manual implementations when possible
+
+## Examples of Good Code
+
+```python
+def variational_free_energy(
+    observation: int,
+    state_belief: Float[Array, "n_states"],
+    model: GenerativeModel,
+) -> Float[Array, ""]:
+    """Calculate variational free energy.
+
+    Formula: F = -E_Q[log P(o|s)] + KL[Q(s) || P(s)]
+    """
+    # Numerical stability
+    state_belief = state_belief + 1e-16
+    state_belief = state_belief / jnp.sum(state_belief)
+
+    # Calculate accuracy
+    obs_likelihood = model.get_observation_likelihood(observation)
+    log_likelihood = jnp.log(obs_likelihood + 1e-16)
+    accuracy = jnp.sum(state_belief * log_likelihood)
+
+    # Calculate complexity
+    log_prior = jnp.log(model.D + 1e-16)
+    log_posterior = jnp.log(state_belief + 1e-16)
+    complexity = jnp.sum(state_belief * (log_posterior - log_prior))
+
+    return -accuracy + complexity
+```

@@ -1,0 +1,151 @@
+# Environments Module Coding Rules
+
+## General Principles
+
+1. **Deterministic by Default**: Environments are deterministic (with optional noise)
+2. **Discrete States**: All states, actions, observations are discrete
+3. **THRML Compatible**: Designed for THRML integration
+4. **Agent Interface**: Must match agent expectations (reset, step)
+5. **Real Operations**: No mocks, actual environment dynamics
+
+## Code Style
+
+- Use `equinox.Module` for environment classes
+- Use `dataclass` for configuration classes
+- Use `jax.random` for stochastic operations
+- Use `jaxtyping` for type annotations
+- Keep environment logic separate from agent logic
+
+## Environment Design
+
+### Required Methods
+- `reset(key)`: Reset to initial state, return observation
+- `step(key, action)`: Execute action, return (observation, reward, done)
+- `get_state()`: Get current state (optional)
+
+### State Management
+- Current state should be tracked internally
+- State should be immutable (functional updates)
+- State should be representable as discrete indices
+
+### Observation Generation
+- Must be deterministic (with optional noise)
+- Must return discrete observation index
+- Must be compatible with agent's observation space
+
+## THRML Integration Guidelines
+
+### Current State
+- Environments use integer state indices
+- Transitions are deterministic matrices
+- Observations are deterministic (with noise)
+
+### Target Integration
+1. **State Nodes**: Use `thrml.CategoricalNode` for state representation
+2. **Transition Factors**: Convert transition matrices to THRML factors
+3. **Observation Factors**: Convert observation model to THRML factors
+4. **Sampling**: Use THRML sampling for probabilistic transitions
+
+### Integration Checklist
+- [ ] Convert state representation to THRML nodes
+- [ ] Create transition factors using `AbstractFactor`
+- [ ] Create observation factors
+- [ ] Use THRML sampling for probabilistic transitions
+
+## Function Design
+
+### Reset Function
+- Must accept JAX random key
+- Must return initial observation
+- Must reset all internal state
+- Must be deterministic (same key = same state)
+
+### Step Function
+- Must accept JAX random key and action
+- Must return (observation, reward, done)
+- Must update internal state
+- Must handle invalid actions gracefully
+- Must respect environment boundaries
+
+## Testing Requirements
+
+- All environments must have tests in `tests/test_environments.py`
+- Test reset behavior
+- Test state transitions
+- Test observation generation
+- Test reward calculation
+- Test boundary conditions
+- Test invalid actions
+
+## Documentation Standards
+
+- Document state space (what states exist)
+- Document action space (what actions are available)
+- Document observation space (what observations can occur)
+- Document reward structure
+- Provide usage examples
+
+## Error Handling
+
+- Validate actions (check bounds)
+- Handle invalid states gracefully
+- Check environment boundaries
+- Provide clear error messages
+- Never allow invalid state transitions
+
+## Performance Considerations
+
+- Use JAX operations for vectorization
+- Avoid Python loops where possible
+- Cache transition matrices if expensive
+- Use `jax.jit` for frequently called methods
+
+## Dependencies
+
+### Required
+- `jax >= 0.4.0`
+- `jax.numpy`
+- `equinox >= 0.11.2`
+
+### THRML Integration
+- `thrml.CategoricalNode`: For state representation (future)
+- `thrml.factor.AbstractFactor`: For transitions/observations (future)
+
+## Example: Good Environment Design
+
+```python
+class GridWorld(eqx.Module):
+    """Grid world environment."""
+
+    config: GridWorldConfig
+    n_states: int
+    n_observations: int
+    n_actions: int = 4
+    current_state: Int[Array, "2"]
+
+    def reset(self, key: Key[Array, ""]) -> int:
+        """Reset to initial state."""
+        self.current_state = jnp.array([0, 0])
+        return self.get_observation(self.current_state)
+
+    def step(
+        self,
+        key: Key[Array, ""],
+        action: int,
+    ) -> tuple[int, float, bool]:
+        """Execute action."""
+        # Update state
+        new_state = self._transition(self.current_state, action)
+        self.current_state = new_state
+
+        # Get observation
+        observation = self.get_observation(new_state)
+
+        # Calculate reward
+        reward = self._calculate_reward(new_state)
+
+        # Check if done
+        done = self._is_terminal(new_state)
+
+        return observation, reward, done
+```

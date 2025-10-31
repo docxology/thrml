@@ -1,0 +1,30 @@
+{
+  "example_name": "04_mdp_example",
+  "timestamp": "20251031_120037",
+  "start_time": "2025-10-31 12:00:37.841171",
+  "end_time": "2025-10-31 12:01:13.702482",
+  "duration_seconds": 35.861311,
+  "metrics": {
+    "n_states": 5,
+    "reward_state": 4,
+    "n_episodes": 5,
+    "success_rate": 1.0,
+    "average_steps_to_goal": 20.0
+  },
+  "performance_metrics": {},
+  "section_timings": {},
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 7,
+    "total_size_bytes": 329414,
+    "total_size_formatted": "321.7KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/04_mdp_example/20251031_120037"
+}

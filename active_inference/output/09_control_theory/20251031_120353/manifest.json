@@ -1,0 +1,75 @@
+{
+  "example_name": "09_control_theory",
+  "timestamp": "20251031_120353",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/09_control_theory/20251031_120353",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 662,
+      "total_size_formatted": "662.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 662,
+          "size_formatted": "662.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 44350,
+      "total_size_formatted": "43.3KB",
+      "files": [
+        {
+          "name": "control_results.npz",
+          "size": 44350,
+          "size_formatted": "43.3KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 4,
+      "total_size": 644736,
+      "total_size_formatted": "629.6KB",
+      "files": [
+        {
+          "name": "control_comparison.png",
+          "size": 315724,
+          "size_formatted": "308.3KB"
+        },
+        {
+          "name": "thrml_state_estimation.png",
+          "size": 247884,
+          "size_formatted": "242.1KB"
+        },
+        {
+          "name": "control_comparison.pdf",
+          "size": 42105,
+          "size_formatted": "41.1KB"
+        },
+        {
+          "name": "thrml_state_estimation.pdf",
+          "size": 39023,
+          "size_formatted": "38.1KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 13899,
+      "total_size_formatted": "13.6KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 13899,
+          "size_formatted": "13.6KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 7,
+    "size": 703647,
+    "size_formatted": "687.2KB"
+  }
+}

@@ -1,0 +1,160 @@
+# Inference Module Coding Rules
+
+## General Principles
+
+1. **Real Inference Only**: No mocks or placeholder inference methods
+2. **Maximum THRML Usage**: Prefer THRML components over manual implementations
+3. **Modular Design**: Each inference method is independently usable
+4. **JAX Compatibility**: All functions must be JIT-compatible and vectorizable
+5. **Convergence**: Iterative methods must check for convergence
+
+## THRML Integration Priority
+
+### Required THRML Components
+- `thrml.Block`: For organizing state nodes into blocks
+- `thrml.BlockGibbsSpec`: For specifying free/clamped blocks
+- `thrml.CategoricalNode`: For discrete state representations
+- `thrml.sample_states`: Core sampling function (prefer over manual sampling)
+- `thrml.SamplingSchedule`: For configuring sampling
+- `thrml.factor.FactorSamplingProgram`: For factor-based inference
+- `thrml.models.discrete_ebm.CategoricalEBMFactor`: For categorical factors
+- `thrml.models.discrete_ebm.CategoricalGibbsConditional`: For categorical sampling
+- `thrml.observers.AbstractObserver`: For monitoring inference
+
+### Integration Guidelines
+1. **Always Prefer THRML**: If THRML provides a component, use it instead of manual implementation
+2. **Factor-Based Design**: Convert generative models to THRML factors
+3. **Block Structure**: Use THRML blocks for all state management
+4. **Sampling**: Use `sample_states` instead of manual Gibbs sampling
+5. **Observers**: Use THRML observers for monitoring and debugging
+
+## Code Style
+
+### State Inference (`state_inference.py`)
+- Use iterative fixed-point updates
+- Check convergence after each iteration
+- Return both posterior and free energy
+- Support batch operations via `jax.vmap`
+
+### THRML Inference (`thrml_inference.py`)
+- Create proper THRML block structures
+- Use `BlockGibbsSpec` for block specifications
+- Use `SamplingSchedule` for sampling configuration
+- Convert to factor-based representation where possible
+- Use `sample_states` for actual sampling (not direct computation)
+
+## Function Design
+
+### Inference Functions
+- Must accept `GenerativeModel` as argument
+- Must return posterior distribution (probability vector)
+- Should return free energy or quality metric
+- Must handle edge cases (zero probability, numerical stability)
+- Must support both single and batch inference
+
+### THRML Functions
+- Must use THRML components (Block, Node, Factor, etc.)
+- Must not duplicate THRML functionality
+- Should create proper factor representations
+- Must use `sample_states` for sampling, not manual loops
+
+## Current Integration Status
+
+### ✅ Completed
+- Basic THRML imports
+- Block structure creation
+- Template for THRML inference
+
+### ⚠️ In Progress
+- Full factor integration
+- Actual THRML sampling (currently uses direct computation)
+
+### 🔄 Future
+- Complete factor-based inference
+- Observer integration
+- GPU optimization
+
+## Testing Requirements
+
+- All inference methods must have tests in `tests/test_inference.py`
+- Test convergence behavior
+- Test batch operations
+- Test numerical stability
+- Test THRML integration (when implemented)
+- Test edge cases (single state, uniform prior, etc.)
+
+## Documentation Standards
+
+- Explain inference algorithm used
+- Document THRML components used
+- Provide usage examples
+- Document convergence criteria
+- Explain integration status
+
+## Error Handling
+
+- Validate inputs (dimensions, probabilities)
+- Check convergence failures
+- Handle numerical errors gracefully
+- Provide clear error messages
+- Never return invalid distributions
+
+## Performance Considerations
+
+- Use `jax.jit` for frequently called inference functions
+- Use `jax.vmap` for batch operations
+- Prefer THRML's optimized sampling over manual implementations
+- Profile before optimizing
+
+## Example: Good THRML Integration
+
+```python
+from thrml import Block, BlockGibbsSpec, CategoricalNode, sample_states, SamplingSchedule
+from thrml.factor import FactorSamplingProgram
+from thrml.models.discrete_ebm import CategoricalEBMFactor, CategoricalGibbsConditional
+
+def infer_with_thrml(key, observation, model):
+    """Proper THRML integration example."""
+    # Create state nodes
+    state_nodes = [CategoricalNode() for _ in range(model.n_states)]
+
+    # Create blocks
+    state_block = Block(state_nodes)
+    spec = BlockGibbsSpec([state_block], [])
+
+    # Create factor for observation likelihood
+    factor = CategoricalEBMFactor(
+        weights=model.A[observation, :],  # Observation likelihood
+        node_groups=[state_block],
+    )
+
+    # Create sampling program
+    sampler = CategoricalGibbsConditional(model.n_states)
+    program = FactorSamplingProgram(
+        gibbs_spec=spec,
+        samplers=[sampler],
+        factors=[factor],
+        other_interaction_groups=[],
+    )
+
+    # Sample
+    schedule = SamplingSchedule(n_warmup=100, n_samples=1000, steps_per_sample=5)
+    init_state = [jax.random.randint(key, (len(state_nodes),), 0, model.n_states)]
+
+    samples = sample_states(key, program, schedule, init_state, [], [state_block])
+
+    # Aggregate samples into posterior
+    posterior = aggregate_samples(samples)
+    return posterior
+```
+
+## Dependencies
+
+### Required THRML
+- `thrml >= 0.1.3`
+- All THRML components listed above
+
+### External
+- `jax >= 0.4.0`
+- `jax.numpy`
+- `equinox >= 0.11.2`

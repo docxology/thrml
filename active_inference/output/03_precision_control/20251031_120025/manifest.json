@@ -1,0 +1,85 @@
+{
+  "example_name": "03_precision_control",
+  "timestamp": "20251031_120025",
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/03_precision_control/20251031_120025",
+  "files": {
+    "config": {
+      "count": 1,
+      "total_size": 124,
+      "total_size_formatted": "124.0B",
+      "files": [
+        {
+          "name": "config.json",
+          "size": 124,
+          "size_formatted": "124.0B"
+        }
+      ]
+    },
+    "data": {
+      "count": 1,
+      "total_size": 4863,
+      "total_size_formatted": "4.7KB",
+      "files": [
+        {
+          "name": "precision_comparison.npz",
+          "size": 4863,
+          "size_formatted": "4.7KB"
+        }
+      ]
+    },
+    "plots": {
+      "count": 6,
+      "total_size": 321763,
+      "total_size_formatted": "314.2KB",
+      "files": [
+        {
+          "name": "precision_comparison.pdf",
+          "size": 22140,
+          "size_formatted": "21.6KB"
+        },
+        {
+          "name": "precision_comparison.png",
+          "size": 159981,
+          "size_formatted": "156.2KB"
+        },
+        {
+          "name": "trajectories_by_precision.pdf",
+          "size": 24137,
+          "size_formatted": "23.6KB"
+        },
+        {
+          "name": "trajectories_by_precision.png",
+          "size": 38451,
+          "size_formatted": "37.5KB"
+        },
+        {
+          "name": "action_distributions.pdf",
+          "size": 28715,
+          "size_formatted": "28.0KB"
+        },
+        {
+          "name": "action_distributions.png",
+          "size": 48339,
+          "size_formatted": "47.2KB"
+        }
+      ]
+    },
+    "logs": {
+      "count": 1,
+      "total_size": 11994,
+      "total_size_formatted": "11.7KB",
+      "files": [
+        {
+          "name": "execution.log",
+          "size": 11994,
+          "size_formatted": "11.7KB"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "files": 9,
+    "size": 338744,
+    "size_formatted": "330.8KB"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "example_name": "09_control_theory",
+  "timestamp": "20251031_120353",
+  "start_time": "2025-10-31 12:03:53.526898",
+  "end_time": "2025-10-31 12:04:47.085777",
+  "duration_seconds": 53.558879,
+  "metrics": {
+    "lqr_final_position": 0.9794338941574097,
+    "lqr_final_velocity": 0.020655207335948944,
+    "lqr_mse": 0.08495289087295532,
+    "lqr_max_control": 7.61295747756958,
+    "lqr_settling_time": 1.6,
+    "pid_final_position": 1.02580726146698,
+    "pid_final_velocity": 0.04653049632906914,
+    "pid_mse": 0.048403140157461166,
+    "pid_max_control": 12.050000190734863,
+    "pid_settling_time": 0.8,
+    "lqr_vs_pid_mse_ratio": 1.7551110982894897,
+    "thrml_estimation_rmse": 0.07309291232221167,
+    "thrml_observation_rmse": 0.10959509057616992,
+    "thrml_improvement_pct": 33.30639909329588,
+    "thrml_n_state_bins": 30,
+    "thrml_n_samples": 100
+  },
+  "performance_metrics": {
+    "LQR Solution": 0.5944688320159912
+  },
+  "section_timings": {
+    "Configuration": 0.0006489753723144531,
+    "LQR Controller Design": 0.5949339866638184,
+    "LQR Simulation": 0.22942686080932617,
+    "PID Simulation": 0.21178293228149414,
+    "THRML State Estimation": 50.340633153915405,
+    "Data Saving": 0.0024940967559814453,
+    "Visualization": 2.1324551105499268,
+    "Metrics": 0.0008203983306884766
+  },
+  "validation_summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 7,
+    "total_size_bytes": 703647,
+    "total_size_formatted": "687.2KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/09_control_theory/20251031_120353"
+}

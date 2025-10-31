@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="7" failures="0" skipped="1" tests="78" time="54.503" timestamp="2025-10-31T07:52:49.479271-07:00" hostname="timelock.local"><testcase classname="tests.test_agents.TestAgentState" name="test_agent_state_initialization" time="0.222" /><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_initialization" time="0.336"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_perceive" time="0.004"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_act" time="0.005"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_step" time="0.004"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_reset" time="0.005"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_get_action_distribution" time="0.005"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestActiveInferenceAgent" name="test_agent_seeks_goal" time="0.598" /><testcase classname="tests.test_agents.TestPlanning" name="test_plan_action_greedy" time="0.043" /><testcase classname="tests.test_agents.TestPlanning" name="test_plan_with_tree_search" time="0.060" /><testcase classname="tests.test_agents.TestPlanning" name="test_tree_search_with_branching" time="0.009" /><testcase classname="tests.test_agents.TestAgentBehavior" name="test_agent_multi_step_episode" time="0.007"><error message="failed on setup with &quot;TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'&quot;">simple_generative_model = GenerativeModel(A=Array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]],..., 0., 2.], dtype=float32), D=Array([0.25, 0.25, 0.25, 0.25], dtype=float32), n_states=4, n_observations=4, n_actions=2)
+
+    @pytest.fixture
+    def basic_agent(simple_generative_model):
+        """Create a basic active inference agent for testing."""
+        from active_inference.agents import ActiveInferenceAgent
+        from active_inference.core.precision import Precision
+
+        precision = Precision(
+            sensory_precision=1.0,
+            state_precision=1.0,
+            action_precision=2.0,
+        )
+
+&gt;       return ActiveInferenceAgent(
+            model=simple_generative_model,
+            precision=precision,
+            planning_horizon=2,
+            inference_iterations=10,
+        )
+E       TypeError: ActiveInferenceAgent.__init__() got an unexpected keyword argument 'inference_iterations'
+
+tests/conftest.py:84: TypeError</error></testcase><testcase classname="tests.test_agents.TestAgentBehavior" name="test_agent_exploration_vs_exploitation" time="0.076" /><testcase classname="tests.test_core.TestGenerativeModel" name="test_model_initialization" time="0.125" /><testcase classname="tests.test_core.TestGenerativeModel" name="test_observation_likelihood" time="0.031" /><testcase classname="tests.test_core.TestGenerativeModel" name="test_state_transition" time="0.006" /><testcase classname="tests.test_core.TestGenerativeModel" name="test_predict_observation" time="0.004" /><testcase classname="tests.test_core.TestGenerativeModel" name="test_predict_next_state" time="0.031" /><testcase classname="tests.test_core.TestGenerativeModel" name="test_hierarchical_model" time="0.009" /><testcase classname="tests.test_core.TestFreeEnergy" name="test_variational_free_energy" time="0.005" /><testcase classname="tests.test_core.TestFreeEnergy" name="test_expected_free_energy" time="0.008" /><testcase classname="tests.test_core.TestFreeEnergy" name="test_batch_expected_free_energy" time="0.054" /><testcase classname="tests.test_core.TestFreeEnergy" name="test_efe_prefers_goal_states" time="0.002"><skipped type="pytest.skip" message="EFE calculation needs review - preferences not weighted correctly">/Users/4d/Documents/GitHub/thrml/active_inference/tests/test_core.py:123: EFE calculation needs review - preferences not weighted correctly</skipped></testcase><testcase classname="tests.test_core.TestPrecision" name="test_precision_initialization" time="0.001" /><testcase classname="tests.test_core.TestPrecision" name="test_message_creation" time="0.051" /><testcase classname="tests.test_core.TestPrecision" name="test_weight_prediction_error" time="0.069" /><testcase classname="tests.test_core.TestPrecision" name="test_softmax_with_precision" time="0.148" /><testcase classname="tests.test_core.TestUtilityFunctions" name="test_normalize_distribution" time="0.033" /><testcase classname="tests.test_core.TestUtilityFunctions" name="test_softmax_stable" time="0.020" /><testcase classname="tests.test_environments.TestGridWorld" name="test_grid_world_initialization" time="0.007" /><testcase classname="tests.test_environments.TestGridWorld" name="test_grid_world_reset" time="0.284" /><testcase classname="tests.test_environments.TestGridWorld" name="test_grid_world_step" time="0.314" /><testcase classname="tests.test_environments.TestGridWorld" name="test_grid_world_boundaries" time="0.041" /><testcase classname="tests.test_environments.TestGridWorld" name="test_grid_world_obstacles" time="0.006" /><testcase classname="tests.test_environments.TestGridWorld" name="test_grid_world_goal" time="0.008" /><testcase classname="tests.test_environments.TestGridWorld" name="test_state_conversions" time="0.007" /><testcase classname="tests.test_environments.TestTMaze" name="test_tmaze_initialization" time="0.000" /><testcase classname="tests.test_environments.TestTMaze" name="test_tmaze_reset" time="0.054" /><testcase classname="tests.test_environments.TestTMaze" name="test_tmaze_cue_presentation" time="0.236" /><testcase classname="tests.test_environments.TestTMaze" name="test_tmaze_navigation" time="0.001" /><testcase classname="tests.test_environments.TestTMaze" name="test_tmaze_reward_side" time="0.001" /><testcase classname="tests.test_environments.TestEnvironmentIntegration" name="test_grid_world_full_episode" time="0.129" /><testcase classname="tests.test_environments.TestEnvironmentIntegration" name="test_tmaze_full_episode" time="0.001" /><testcase classname="tests.test_inference.TestStateInference" name="test_infer_states_basic" time="0.118" /><testcase classname="tests.test_inference.TestStateInference" name="test_infer_states_convergence" time="0.040" /><testcase classname="tests.test_inference.TestStateInference" name="test_infer_states_with_certain_observation" time="0.010" /><testcase classname="tests.test_inference.TestStateInference" name="test_variational_message_passing" time="0.013" /><testcase classname="tests.test_inference.TestStateInference" name="test_update_belief_batch" time="0.420" /><testcase classname="tests.test_inference.TestThrmlInference" name="test_thrml_engine_initialization" time="0.018" /><testcase classname="tests.test_inference.TestThrmlInference" name="test_thrml_infer_with_sampling" time="1.368" /><testcase classname="tests.test_inference.TestThrmlInference" name="test_thrml_sample_trajectory" time="0.023" /><testcase classname="tests.test_inference.TestInferenceProperties" name="test_inference_reduces_uncertainty" time="0.024" /><testcase classname="tests.test_inference.TestInferenceProperties" name="test_inference_respects_likelihood" time="0.053" /><testcase classname="tests.test_integration.TestGridWorldIntegration" name="test_agent_navigates_grid_world" time="6.997" /><testcase classname="tests.test_integration.TestGridWorldIntegration" name="test_agent_avoids_obstacles" time="9.053" /><testcase classname="tests.test_integration.TestTMazeIntegration" name="test_agent_navigates_tmaze" time="3.739" /><testcase classname="tests.test_integration.TestTMazeIntegration" name="test_agent_uses_cues" time="6.717" /><testcase classname="tests.test_integration.TestLearningBehavior" name="test_free_energy_decreases_with_information" time="10.891" /><testcase classname="tests.test_integration.TestRobustness" name="test_agent_handles_noisy_observations" time="6.066" /><testcase classname="tests.test_integration.TestRobustness" name="test_agent_handles_degenerate_cases" time="0.203" /><testcase classname="tests.test_thrml_integration.TestThrmlCoreIntegration" name="test_spin_node_creation" time="0.001" /><testcase classname="tests.test_thrml_integration.TestThrmlCoreIntegration" name="test_categorical_node_creation" time="0.000" /><testcase classname="tests.test_thrml_integration.TestThrmlCoreIntegration" name="test_block_creation" time="0.000" /><testcase classname="tests.test_thrml_integration.TestThrmlCoreIntegration" name="test_block_gibbs_spec" time="0.000" /><testcase classname="tests.test_thrml_integration.TestThrmlIsing" name="test_ising_model_creation" time="0.039" /><testcase classname="tests.test_thrml_integration.TestThrmlIsing" name="test_ising_sampling_program" time="0.348" /><testcase classname="tests.test_thrml_integration.TestThrmlIsing" name="test_hinton_initialization" time="0.106" /><testcase classname="tests.test_thrml_integration.TestThrmlIsing" name="test_ising_sampling" time="0.572" /><testcase classname="tests.test_thrml_integration.TestThrmlDiscreteEBM" name="test_spin_ebm_factor" time="0.001" /><testcase classname="tests.test_thrml_integration.TestThrmlDiscreteEBM" name="test_categorical_ebm_factor" time="0.015" /><testcase classname="tests.test_thrml_integration.TestThrmlDiscreteEBM" name="test_spin_gibbs_conditional" time="0.000" /><testcase classname="tests.test_thrml_integration.TestThrmlDiscreteEBM" name="test_categorical_gibbs_conditional" time="0.000" /><testcase classname="tests.test_thrml_integration.TestThrmlDiscreteEBM" name="test_categorical_sampling" time="0.598" /><testcase classname="tests.test_thrml_integration.TestThrmlIntegrationWithActiveInference" name="test_active_inference_can_use_thrml_nodes" time="0.048" /><testcase classname="tests.test_thrml_integration.TestThrmlIntegrationWithActiveInference" name="test_thrml_sampling_schedule_compatible" time="0.000" /><testcase classname="tests.test_thrml_integration.TestThrmlIntegrationWithActiveInference" name="test_thrml_jax_compatibility" time="0.027" /><testcase classname="tests.test_thrml_integration.TestThrmlDocumentationExamples" name="test_readme_example" time="0.632" /><testcase classname="tests.test_thrml_integration.TestThrmlPerformance" name="test_large_ising_model" time="0.970" /></testsuite></testsuites>

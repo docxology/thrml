@@ -1,0 +1,33 @@
+{
+  "example_name": "05_pomdp_example",
+  "timestamp": "20251031_120115",
+  "start_time": "2025-10-31 12:01:15.995711",
+  "end_time": "2025-10-31 12:01:42.505317",
+  "duration_seconds": 26.509606,
+  "metrics": {
+    "n_episodes": 3,
+    "observation_accuracy": 0.85,
+    "success_rate": 1.0,
+    "mean_listen_count": 7.666666666666667,
+    "mean_reward": -23.333333333333332,
+    "mean_initial_entropy": 0.5989686846733093,
+    "mean_final_entropy": 0.0,
+    "entropy_reduction": 0.5989686846733093
+  },
+  "performance_metrics": {},
+  "section_timings": {},
+  "validation_summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "output_summary": {
+    "total_files": 9,
+    "total_size_bytes": 540467,
+    "total_size_formatted": "527.8KB"
+  },
+  "errors": [],
+  "profiling_enabled": true,
+  "validation_enabled": true,
+  "output_directory": "/Users/4d/Documents/GitHub/thrml/active_inference/output/05_pomdp_example/20251031_120115"
+}

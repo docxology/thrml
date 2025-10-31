@@ -1,0 +1,147 @@
+# Models Module Coding Rules
+
+## General Principles
+
+1. **Automatic Construction**: Build models from environment specifications
+2. **Consistent Interface**: Same function signature across builders
+3. **THRML Compatible**: Models can be converted to THRML factors
+4. **Real Operations**: Build actual models, no mocks
+5. **Validation**: Validate all model parameters
+
+## Code Style
+
+- Use descriptive function names: `build_<environment>_model`
+- Accept environment config objects as arguments
+- Return `GenerativeModel` instances
+- Use keyword arguments for optional parameters
+- Provide sensible defaults
+
+## Function Design
+
+### Builder Functions
+- Must accept environment configuration
+- Must return `GenerativeModel` instance
+- Must validate input parameters
+- Must normalize probability distributions
+- Must handle edge cases (no goal, all obstacles, etc.)
+
+### Model Construction
+- Build A matrix (observation likelihood)
+- Build B tensor (state transitions)
+- Build C vector (preferences)
+- Build D vector (state prior)
+- Normalize all distributions
+
+## THRML Integration Guidelines
+
+### Current State
+- Builders create standard `GenerativeModel` instances
+- Models use matrix-based representations
+
+### Target Integration
+1. **Factor Conversion**: Convert models to THRML factors
+2. **Node Creation**: Create THRML nodes matching model structure
+3. **Energy Formulation**: Convert to energy-based representation
+4. **Factor Graphs**: Build THRML factor graphs
+
+### Integration Checklist
+- [ ] Create function to convert `GenerativeModel` to THRML factors
+- [ ] Create function to generate THRML nodes matching model
+- [ ] Create function to build THRML factor graph
+- [ ] Test factor conversion correctness
+
+## Validation Requirements
+
+- Validate environment configuration
+- Check dimensions match specifications
+- Verify probability distributions sum to 1
+- Handle edge cases (empty config, invalid values)
+
+## Testing Requirements
+
+- All builders must have tests in `tests/test_integration.py`
+- Test model construction correctness
+- Test model-environment consistency
+- Test parameter validation
+- Test edge cases
+
+## Documentation Standards
+
+- Document what model structure is created
+- Explain observation, transition, preference models
+- Provide usage examples
+- Document THRML integration points
+
+## Error Handling
+
+- Validate input parameters
+- Check dimension compatibility
+- Verify probability distributions
+- Provide clear error messages
+- Never return invalid models
+
+## Performance Considerations
+
+- Pre-compute matrices where possible
+- Use vectorized operations
+- Cache expensive computations
+- Profile before optimizing
+
+## Dependencies
+
+### Required
+- `core`: GenerativeModel class
+- `environments`: Configuration classes
+
+### THRML Integration
+- `thrml.factor.AbstractFactor`: For factor conversion (future)
+- `thrml.CategoricalNode`: For node creation (future)
+- `thrml.models.discrete_ebm`: For EBM conversion (future)
+
+## Example: Good Builder Design
+
+```python
+def build_grid_world_model(
+    config: GridWorldConfig,
+    goal_preference_strength: float = 2.0,
+) -> GenerativeModel:
+    """Build generative model for grid world.
+
+    Creates a GenerativeModel matching the grid world dynamics:
+    - Observation model A: Each state has preferred observation with noise
+    - Transition model B: Deterministic transitions respecting boundaries/obstacles
+    - Preferences C: Strong preference for goal observations
+    - Prior D: Uniform over states
+    """
+    n_states = config.size * config.size
+    n_obs = config.n_observations
+    n_actions = 4
+
+    # Build observation model A[o, s]
+    A = jnp.ones((n_obs, n_states)) * config.observation_noise / n_obs
+    for s in range(n_states):
+        preferred_obs = s % n_obs
+        A = A.at[preferred_obs, s].set(
+            1.0 - config.observation_noise + config.observation_noise / n_obs
+        )
+    A = A / jnp.sum(A, axis=0, keepdims=True)
+
+    # Build transition model B[s', s, a]
+    B = build_transition_matrix(config)
+
+    # Build preferences C[o]
+    C = build_preferences(config, goal_preference_strength)
+
+    # Uniform prior
+    D = jnp.ones(n_states) / n_states
+
+    return GenerativeModel(
+        n_states=n_states,
+        n_observations=n_obs,
+        n_actions=n_actions,
+        A=A,
+        B=B,
+        C=C,
+        D=D,
+    )
+```

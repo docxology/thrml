@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "A_matrix": [
+    [
+      1.0,
+      0.10000000149011612
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "B_matrix": [
+    [
+      0.004999999888241291
+    ],
+    [
+      0.10000000149011612
+    ]
+  ],
+  "Q_matrix": [
+    [
+      10.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "R_matrix": [
+    [
+      0.10000000149011612
+    ]
+  ],
+  "pid_kp": 2.0,
+  "pid_ki": 0.5,
+  "pid_kd": 1.0,
+  "dt": 0.1,
+  "n_steps": 200,
+  "setpoint": 1.0,
+  "disturbance_time": 100,
+  "disturbance_magnitude": 0.5,
+  "n_state_bins": 30,
+  "observation_noise_std": 0.1,
+  "thrml_n_samples": 100,
+  "thrml_n_warmup": 25,
+  "thrml_steps_per_sample": 3
+}
