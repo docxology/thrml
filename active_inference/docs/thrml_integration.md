@@ -89,43 +89,36 @@ prediction_spec = BlockGibbsSpec(
 
 #### `SamplingSchedule`
 
-**Purpose**: Controls sampling order and strategy
+**Purpose**: Controls sampling schedule for block Gibbs sampling
 
 **Attributes**:
-- `schedule`: Sequence of block indices to sample
-- `n_sweeps`: Number of full sampling sweeps
+- `n_warmup`: Number of warmup steps before collecting samples
+- `n_samples`: Number of samples to collect
+- `steps_per_sample`: Number of Gibbs steps between each sample
 
 **Usage**:
 ```python
 from thrml import SamplingSchedule
 
 schedule = SamplingSchedule(
-    schedule=[0],  # Sample block 0
-    n_sweeps=10    # 10 complete sweeps
+    n_warmup=100,        # 100 warmup steps
+    n_samples=1000,      # Collect 1000 samples
+    steps_per_sample=2   # 2 Gibbs steps between samples
 )
 ```
 
 #### `BlockSamplingProgram`
 
-**Purpose**: Complete sampling program with factors
+**Purpose**: Complete sampling program with interaction groups
 
 **Attributes**:
-- `spec`: `BlockGibbsSpec` for free/clamped blocks
-- `factors`: List of energy factors
-- `schedule`: `SamplingSchedule` for sampling order
+- `gibbs_spec`: `BlockGibbsSpec` for free/clamped blocks
+- `samplers`: List of conditional samplers (one per free block)
+- `interaction_groups`: List of `InteractionGroup` objects
 
-**Usage**:
-```python
-from thrml import BlockSamplingProgram
+**Important**: The number of samplers **must exactly match** the number of free blocks in `gibbs_spec`. If the counts don't match, a `ValueError` will be raised: `"Expected {n_free_blocks} samplers, received {len(samplers)}"`.
 
-program = BlockSamplingProgram(
-    spec=gibbs_spec,
-    factors=factor_list,
-    schedule=schedule
-)
-
-samples = program.sample(key, initial_state, n_samples=1000)
-```
+**Note**: For factor-based models, use `FactorSamplingProgram` instead (see below).
 
 **See**: [Block Sampling Guide](thrml_sampling.md)
 
@@ -194,22 +187,36 @@ precise_factor = WeightedFactor(
 
 #### `FactorSamplingProgram`
 
-**Purpose**: Sampling program using factors
+**Purpose**: Factor-based sampling program (subclass of `BlockSamplingProgram`)
 
-**Methods**:
-- `create(blocks, factors)`: Create program from components
-- `sample(key, n_samples)`: Generate samples
+**Attributes**:
+- `gibbs_spec`: `BlockGibbsSpec` for free/clamped blocks
+- `samplers`: List of conditional samplers (one per free block)
+- `factors`: List of `AbstractFactor` objects
+- `other_interaction_groups`: Additional interaction groups
+
+**Important**: The number of samplers **must exactly match** the number of free blocks in `gibbs_spec`. If the counts don't match, a `ValueError` will be raised with the message: `"Expected {n_free_blocks} samplers, received {len(samplers)}"`.
 
 **Usage**:
 ```python
-from thrml import FactorSamplingProgram
+from thrml.factor import FactorSamplingProgram
+from thrml.models.discrete_ebm import CategoricalGibbsConditional
 
-program = FactorSamplingProgram.create(
-    blocks=[state_block],
-    factors=[obs_factor, prior_factor]
+# Create samplers (one per free block)
+sampler = CategoricalGibbsConditional(n_categories=n_states)
+
+# Create program
+program = FactorSamplingProgram(
+    gibbs_spec=gibbs_spec,
+    samplers=[sampler],  # One sampler per free block
+    factors=[obs_factor, prior_factor],
+    other_interaction_groups=[]
 )
 
-samples = program.sample(key, n_samples=1000)
+# Sample using sample_states function
+from thrml import sample_states, SamplingSchedule
+schedule = SamplingSchedule(n_warmup=100, n_samples=1000, steps_per_sample=2)
+samples = sample_states(key, program, schedule, init_state, [], [state_block])
 ```
 
 **See**: [Advanced Factor Usage](thrml_factors_advanced.md)
@@ -609,6 +616,50 @@ print(f"Trajectory shape: {trajectories.shape}")
 ```
 
 **See**: [Complete Examples](../examples/11_thrml_comprehensive.py)
+
+## Troubleshooting
+
+### Common Errors
+
+#### ValueError: "Expected N samplers, received M"
+
+**Cause**: The number of samplers provided to `BlockSamplingProgram` or `FactorSamplingProgram` doesn't match the number of free blocks in the `BlockGibbsSpec`.
+
+**Solution**: Ensure you provide exactly one sampler per free block:
+
+```python
+# Correct: 2 free blocks, 2 samplers
+free_blocks = [block1, block2]
+samplers = [sampler1, sampler2]  # ✅ Correct count
+
+# Incorrect: 2 free blocks, 1 sampler
+samplers = [sampler1]  # ❌ Will raise ValueError
+```
+
+**Example Fix**:
+```python
+# Count free blocks
+n_free_blocks = len(gibbs_spec.free_blocks)
+
+# Create one sampler per free block
+samplers = [CategoricalGibbsConditional(n_categories=n_states)
+            for _ in range(n_free_blocks)]
+
+# Now create program
+program = FactorSamplingProgram(
+    gibbs_spec=gibbs_spec,
+    samplers=samplers,  # ✅ Correct count
+    factors=factors,
+    other_interaction_groups=[]
+)
+```
+
+#### Import Errors
+
+If you see import errors for THRML components, ensure:
+1. THRML is installed: `uv pip install thrml` or `uv pip install -e ../thrml` (development)
+2. You're using the correct import paths (see [THRML Components Reference](#thrml-components-reference))
+3. Your Python environment has the correct version of THRML (>=0.1.3)
 
 ## Cross-References
 

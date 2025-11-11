@@ -20,11 +20,22 @@ echo "2. Activating virtual environment..."
 source .venv/bin/activate
 
 echo ""
-echo "3. Installing package with dependencies..."
+echo "3. Installing THRML (parent package if available, otherwise from PyPI)..."
+# Check if parent thrml directory exists (development mode)
+if [ -d "../thrml" ] && [ -f "../pyproject.toml" ]; then
+    echo "   Found parent thrml package, installing in editable mode..."
+    uv pip install -e ../thrml
+    echo "   ✅ Installed thrml from parent directory"
+else
+    echo "   Parent thrml not found, will install from PyPI via dependencies"
+fi
+
+echo ""
+echo "4. Installing active_inference package with dependencies..."
 uv pip install -e ".[all]"
 
 echo ""
-echo "4. Installing pre-commit hooks..."
+echo "5. Installing pre-commit hooks..."
 if command -v pre-commit &> /dev/null; then
     pre-commit install
 else

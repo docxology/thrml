@@ -11,8 +11,9 @@ cd active_inference && ./scripts/setup.sh
 That's it! The setup script:
 - ✅ Installs UV automatically if not present
 - ✅ Creates virtual environment with `uv venv`
+- ✅ Installs THRML from parent directory (if available) or PyPI
 - ✅ Installs all dependencies with `uv pip`
-- ✅ Runs initial validation
+- ✅ Sets up pre-commit hooks (if available)
 
 ## Manual Setup
 

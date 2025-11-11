@@ -265,6 +265,132 @@ class TestThrmlDocumentationExamples:
         assert samples[0].shape == (1000, 5)
 
 
+class TestSamplerCountValidation:
+    """Test that sampler count validation works correctly in active_inference context."""
+
+    def test_block_sampling_program_requires_matching_sampler_count(self):
+        """Test that BlockSamplingProgram validates sampler count matches free blocks.
+
+        Note: This test requires thrml with the validation code (from development version).
+        If using PyPI version, the validation may not be present yet.
+        """
+        import inspect
+
+        from thrml import Block, CategoricalNode
+        from thrml.block_sampling import BlockGibbsSpec, BlockSamplingProgram
+        from thrml.models.discrete_ebm import CategoricalGibbsConditional
+        from thrml.pgm import DEFAULT_NODE_SHAPE_DTYPES
+
+        # Check if validation code is present
+        init_source = inspect.getsource(BlockSamplingProgram.__init__)
+        has_validation = "Expected" in init_source and "samplers" in init_source and "ValueError" in init_source
+
+        if not has_validation:
+            pytest.skip("Validation code not present in installed thrml version (requires development version)")
+
+        # Create two free blocks
+        node1 = CategoricalNode()
+        node2 = CategoricalNode()
+        block1 = Block([node1])
+        block2 = Block([node2])
+
+        gibbs_spec = BlockGibbsSpec([block1, block2], clamped_blocks=[], node_shape_dtypes=DEFAULT_NODE_SHAPE_DTYPES)
+
+        # Test: Wrong number of samplers (1 instead of 2)
+        n_cats = 3
+        sampler = CategoricalGibbsConditional(n_categories=n_cats)
+        with pytest.raises(ValueError, match="Expected 2 samplers, received 1"):
+            BlockSamplingProgram(
+                gibbs_spec=gibbs_spec,
+                samplers=[sampler],  # Only 1 sampler for 2 blocks
+                interaction_groups=[],
+            )
+
+        # Test: Correct number of samplers (2 for 2 blocks)
+        samplers = [CategoricalGibbsConditional(n_categories=n_cats) for _ in range(2)]
+        program = BlockSamplingProgram(
+            gibbs_spec=gibbs_spec,
+            samplers=samplers,  # Correct: 2 samplers for 2 blocks
+            interaction_groups=[],
+        )
+        assert len(program.samplers) == 2
+        assert len(program.gibbs_spec.free_blocks) == 2
+
+    def test_factor_sampling_program_inherits_validation(self):
+        """Test that FactorSamplingProgram (subclass) also validates sampler count.
+
+        Note: This test requires thrml with the validation code (from development version).
+        If using PyPI version, the validation may not be present yet.
+        """
+        import inspect
+
+        from thrml import Block, BlockGibbsSpec, CategoricalNode
+        from thrml.block_sampling import BlockSamplingProgram
+        from thrml.factor import FactorSamplingProgram
+        from thrml.models.discrete_ebm import CategoricalEBMFactor, CategoricalGibbsConditional
+        from thrml.pgm import DEFAULT_NODE_SHAPE_DTYPES
+
+        # Check if validation code is present
+        init_source = inspect.getsource(BlockSamplingProgram.__init__)
+        has_validation = "Expected" in init_source and "samplers" in init_source and "ValueError" in init_source
+
+        if not has_validation:
+            pytest.skip("Validation code not present in installed thrml version (requires development version)")
+
+        # Create two free blocks
+        node1 = CategoricalNode()
+        node2 = CategoricalNode()
+        block1 = Block([node1])
+        block2 = Block([node2])
+
+        gibbs_spec = BlockGibbsSpec([block1, block2], clamped_blocks=[], node_shape_dtypes=DEFAULT_NODE_SHAPE_DTYPES)
+
+        # Create factors - one factor per block (each block has 1 node)
+        n_cats = 3
+        factor1 = CategoricalEBMFactor([block1], jnp.ones((1, n_cats)))
+        factor2 = CategoricalEBMFactor([block2], jnp.ones((1, n_cats)))
+
+        # Test: Wrong number of samplers (1 instead of 2)
+        sampler = CategoricalGibbsConditional(n_categories=n_cats)
+        with pytest.raises(ValueError, match="Expected 2 samplers, received 1"):
+            FactorSamplingProgram(
+                gibbs_spec=gibbs_spec,
+                samplers=[sampler],  # Only 1 sampler for 2 blocks
+                factors=[factor1, factor2],
+                other_interaction_groups=[],
+            )
+
+        # Test: Correct number of samplers (2 for 2 blocks)
+        samplers = [CategoricalGibbsConditional(n_categories=n_cats) for _ in range(2)]
+        program = FactorSamplingProgram(
+            gibbs_spec=gibbs_spec,
+            samplers=samplers,  # Correct: 2 samplers for 2 blocks
+            factors=[factor1, factor2],
+            other_interaction_groups=[],
+        )
+        assert len(program.samplers) == 2
+        assert len(program.gibbs_spec.free_blocks) == 2
+
+    def test_thrml_inference_engine_uses_correct_sampler_count(self):
+        """Test that ThrmlInferenceEngine correctly provides matching sampler count."""
+        import jax
+
+        from active_inference.core import GenerativeModel
+        from active_inference.inference import ThrmlInferenceEngine
+
+        # Create model and engine
+        model = GenerativeModel(n_states=4, n_observations=3, n_actions=2)
+        engine = ThrmlInferenceEngine(model, n_samples=10, n_warmup=5)
+
+        # This should work without errors (1 free block, 1 sampler)
+        key = jax.random.key(42)
+        posterior = engine.infer_with_sampling(key, 0)
+
+        # Verify it worked
+        assert posterior.shape == (4,)
+        assert jnp.allclose(posterior.sum(), 1.0, atol=1e-5)
+
+
 @pytest.mark.slow
 class TestThrmlPerformance:
     """Test THRML performance characteristics."""

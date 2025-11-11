@@ -26,6 +26,13 @@ cd active_inference
 # Or manually:
 uv venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install THRML from parent directory if available (development mode)
+if [ -d "../thrml" ] && [ -f "../pyproject.toml" ]; then
+    uv pip install -e ../thrml
+fi
+
+# Install active_inference with all dependencies
 uv pip install -e ".[all]"
 ```
 
